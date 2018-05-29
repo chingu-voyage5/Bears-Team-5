@@ -1,0 +1,26 @@
+{
+  "name": "bears-team-5",
+  "version": "1.0.0",
+  "description": "PWA",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "cypress": "cypress open",
+    "cypress:all": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyage5/Bears-Team-5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingu-voyage5/Bears-Team-5/issues"
+  },
+  "homepage": "https://github.com/chingu-voyage5/Bears-Team-5#readme",
+  "devDependencies": {
+    "cypress": "^2.1.0"
+  }
+}
