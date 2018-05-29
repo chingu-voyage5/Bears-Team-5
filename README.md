@@ -8,14 +8,14 @@ Progress/Wellness PWA to track goals and create data visualizations for your pro
 [![npm](https://img.shields.io/badge/npm-v5.6.0-blue.svg)](https://www.npmjs.com/)  
 
 ## Table of Contents
-* [About](#About)  
-* [Live Demo](#Live-Demo)  
-* [Contributing](#Contributing)  
-* [Requirements](#Requirement)  
-* [Installation](#Installation)  
-* [Build Tools](#Build-Tools)  
-* [Contributors](#Contributors)  
-* [License](#License)  
+* [About](#bout)  
+* [Live Demo](#live-demo)  
+* [Contributing](#contributing)  
+* [Requirements](#requirement)  
+* [Installation](#installation)  
+* [Build Tools](#build-tools)  
+* [Contributors](#ontributors)  
+* [License](#license)  
 
 ## About
 App information coming soon!
