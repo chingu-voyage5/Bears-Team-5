@@ -6,6 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd client && npm start",
     "build": "cd client && npm run build",
+    "precommit": "cd client && npm run lint",
+    "prepush": "cd client && npm run lint",
     "cypress": "cypress open",
     "cypress:all": "cypress run"
   },
@@ -20,12 +22,11 @@
     "url": "https://github.com/chingu-voyage5/Bears-Team-5/issues"
   },
   "homepage": "https://github.com/chingu-voyage5/Bears-Team-5#readme",
-  "devDependencies": {
-    "cypress": "^2.1.0"
-  },
   "dependencies": {
     "dotenv": "^5.0.1",
     "pg": "^7.4.3",
     "sequelize": "^4.37.10"
+    "cypress": "^2.1.0",
+    "husky": "^0.14.3"
   }
 }
