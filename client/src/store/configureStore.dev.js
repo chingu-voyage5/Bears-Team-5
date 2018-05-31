@@ -4,14 +4,12 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
-/* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 export default function configureStore(preloadedState) {
   const sagaMiddleware = createSagaMiddleware();
 
-  /* eslint-disable no-underscore-dangle */
   const store = createStore(
     rootReducer,
     preloadedState,
