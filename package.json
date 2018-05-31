@@ -22,5 +22,10 @@
   "homepage": "https://github.com/chingu-voyage5/Bears-Team-5#readme",
   "devDependencies": {
     "cypress": "^2.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "pg": "^7.4.3",
+    "sequelize": "^4.37.10"
   }
 }
