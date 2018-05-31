@@ -22,7 +22,10 @@
     "url": "https://github.com/chingu-voyage5/Bears-Team-5/issues"
   },
   "homepage": "https://github.com/chingu-voyage5/Bears-Team-5#readme",
-  "devDependencies": {
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "pg": "^7.4.3",
+    "sequelize": "^4.37.10"
     "cypress": "^2.1.0",
     "husky": "^0.14.3"
   }
