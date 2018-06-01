@@ -41,10 +41,12 @@ See link below for instructions on how to get your development environment setup
 ### Command Scripts
 | npm {script}   |                     Function/Description                              |
 | -------------- | --------------------------------------------------------------------- |
-| start          | Starts app on express server at `localhost:3000` with node            |
+| start          | Starts app on webpack dev server at `localhost:3000`                  |
 | build          | Creates production build for application in `build` directory         |
 | cypress        | Runs cypress testing suite (specify tests)                            |
 | cypress:all    | Runs all cypress tests                                                |
+| server         | Runs express server on `localhost:3001`                               |
+| dev-server     | Runs express server on `localhost:3001` with nodemon                  |
 
 ## Build Tools
 * Front-End  
