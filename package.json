@@ -9,7 +9,9 @@
     "precommit": "cd client && npm run lint",
     "prepush": "cd client && npm run lint",
     "cypress": "cypress open",
-    "cypress:all": "cypress run"
+    "cypress:all": "cypress run",
+    "server": "cd server && npm start",
+    "dev-server": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",
