@@ -10,8 +10,8 @@
     "prepush": "cd client && npm run lint",
     "cypress": "cypress open",
     "cypress:all": "cypress run",
-    "server": "node server/server.js",
-    "dev-server": "nodemon server/server.js"
+    "server": "node ./bin/www",
+    "dev-server": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
