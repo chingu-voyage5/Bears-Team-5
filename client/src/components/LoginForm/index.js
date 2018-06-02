@@ -21,9 +21,7 @@ const formikEnhancer = withFormik({
   // Submission handler
   handleSubmit: (values, { props, setSubmitting }) => {
     props.login(values);
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1000);
+    setSubmitting(false);
   },
 });
 

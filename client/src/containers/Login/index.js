@@ -1,10 +1,11 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import LoginForm from '../../components/LoginForm';
 
+import * as actions from '../../actions/auth';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -39,13 +40,21 @@ const LoginFormContainer = styled.div`
   }
 `;
 
-export default function Login(props) {
-  const { login } = props;
+const Error = styled.div`
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.error};
+  text-align: center;
+`;
+
+
+function Login(props) {
+  const { login, errors, isFetching } = props;
   return (
     <LoginContainer>
       <LoginFormContainer>
         <Title>login</Title>
-        <LoginForm login={login} />
+        <LoginForm login={login} isFetching={isFetching} />
+        { errors.request && <Error>{ errors.request }</Error>}
       </LoginFormContainer>
     </LoginContainer>
   );
@@ -54,10 +63,25 @@ export default function Login(props) {
 
 Login.propTypes = {
   login: PropTypes.func,
+  isFetching: PropTypes.bool,
+  errors: PropTypes.shape({}),
 };
 
 Login.defaultProps = {
-  login: data => console.log('LOGIN!!', data),
+  login: () => {},
+  isFetching: false,
+  errors: {},
 };
 
-// export default connect()(Login);
+
+const mapStateToProps = ({ login }) => ({
+  isFetching: login.isFetching,
+  errors: login.errors,
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  login: loginData => dispatch(actions.login.request(loginData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
