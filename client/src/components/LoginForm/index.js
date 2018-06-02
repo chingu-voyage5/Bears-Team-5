@@ -69,26 +69,13 @@ InnerForm.propTypes = {
   values: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string,
-  }),
-  errors: PropTypes.shape({}),
-  touched: PropTypes.bool,
-  handleChange: PropTypes.func,
-  handleBlur: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  isSubmitting: PropTypes.bool,
-};
-
-InnerForm.propTypes = {
-  values: {
-    email: '',
-    password: '',
-  },
-  errors: {},
-  touched: false,
-  handleChange: () => {},
-  handleBlur: () => {},
-  handleSubmit: () => {},
-  isSubmitting: false,
+  }).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  touched: PropTypes.shape({}).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
 };
 
 

@@ -9,7 +9,7 @@ import * as userActions from '../actions/user';
  * Login
  */
 
-const postLoginToAPI = data => axios.post('/api/login', {
+const postLoginToAPI = data => axios.post('/api/auth/login', {
   email: data.email,
   password: data.password,
 });
