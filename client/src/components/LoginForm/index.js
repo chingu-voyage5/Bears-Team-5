@@ -8,8 +8,8 @@ import * as SC from './StyledComponents';
 
 const formikEnhancer = withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: props => ({ email: props.user.email, password: props.user.password }),
-  // Add a custom validation function (this can be async too!)
+  mapPropsToValues: () => ({ email: '', password: '' }),
+  // Validate form
   validationSchema: Yup.object().shape({
     email: Yup.string()
       .email('Invalid email address')
@@ -19,9 +19,9 @@ const formikEnhancer = withFormik({
       .required('Password is required!'),
   }),
   // Submission handler
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { props, setSubmitting }) => {
+    props.login(values);
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 1000);
   },

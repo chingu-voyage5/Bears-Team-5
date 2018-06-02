@@ -39,35 +39,16 @@ const LoginFormContainer = styled.div`
   }
 `;
 
-export default class Login extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      input: {
-        email: '',
-        password: '',
-      },
-    };
-  }
-
-  handleLogin() {
-    const { input } = this.state;
-    const { login } = this.props;
-    login(input);
-  }
-
-  render() {
-    const { input } = this.state;
-    return (
-      <LoginContainer>
-        <LoginFormContainer>
-          <Title>login</Title>
-          <LoginForm user={input}/>
-        </LoginFormContainer>
-      </LoginContainer>
-    );
-  }
+export default function Login(props) {
+  const { login } = props;
+  return (
+    <LoginContainer>
+      <LoginFormContainer>
+        <Title>login</Title>
+        <LoginForm login={login} />
+      </LoginFormContainer>
+    </LoginContainer>
+  );
 }
 
 
@@ -76,7 +57,7 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
-  login: () => {},
+  login: data => console.log('LOGIN!!', data),
 };
 
 // export default connect()(Login);
