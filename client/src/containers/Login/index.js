@@ -1,62 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import LoginForm from '../../components/LoginForm';
+import * as SC from './StyledComponents';
 
 import * as actions from '../../actions/auth';
 
-const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.div`
-  font-size: 1.5rem;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const LoginFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 20vh;
-  margin-left: 40vw;
-  margin-right: 40vw;
-  
-  @media only screen and (max-width : 1024px) {
-    margin-left: 35vw;
-    margin-right: 35vw;
-  }
-  @media only screen and (max-width : 768px) {
-    margin-left: 30vw;
-    margin-right: 30vw;
-  }
-  @media only screen and (max-width : 320px) {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-`;
-
-const Error = styled.div`
-  font-size: 0.75rem;
-  color: ${({ theme }) => theme.error};
-  text-align: center;
-`;
-
 
 function Login(props) {
-  const { login, errors, isFetching } = props;
+  const {
+    login,
+    errors,
+    isFetching,
+    isAuthorized,
+  } = props;
+  if (isAuthorized) return <Redirect to="/" />;
   return (
-    <LoginContainer>
-      <LoginFormContainer>
-        <Title>login</Title>
+    <SC.LoginContainer>
+      <SC.LoginFormContainer>
+        <SC.Title>login</SC.Title>
         <LoginForm login={login} isFetching={isFetching} />
-        { errors.request && <Error>{ errors.request }</Error>}
-      </LoginFormContainer>
-    </LoginContainer>
+        { errors.request && <SC.Error>{ errors.request }</SC.Error>}
+      </SC.LoginFormContainer>
+    </SC.LoginContainer>
   );
 }
 
@@ -64,17 +32,20 @@ function Login(props) {
 Login.propTypes = {
   login: PropTypes.func,
   isFetching: PropTypes.bool,
+  isAuthorized: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
 Login.defaultProps = {
   login: () => {},
   isFetching: false,
+  isAuthorized: false,
   errors: {},
 };
 
 
-const mapStateToProps = ({ login }) => ({
+const mapStateToProps = ({ login, user }) => ({
+  isAuthorized: user.isAuthorized,
   isFetching: login.isFetching,
   errors: login.errors,
 });

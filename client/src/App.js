@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Gotta remove this css file after implementing landing page
 import './App.css';
 
+import Logout from './containers/Logout';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Landing from './containers/Landing';
@@ -13,7 +14,7 @@ export default function App() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {/* <Route path="/logout" component={Logout} /> */}
+        <Route path="/logout" component={Logout} />
         <Route path="/" exact component={Landing} />
         <Route
           path="/*"
