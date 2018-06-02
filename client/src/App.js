@@ -1,8 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+// Gotta remove this css file after implementing landing page
 import './App.css';
 
 import Login from './containers/Login';
+import Signup from './containers/Signup';
 import Landing from './containers/Landing';
 
 export default function App() {
@@ -10,6 +12,7 @@ export default function App() {
     <React.Fragment>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         {/* <Route path="/logout" component={Logout} /> */}
         <Route path="/" exact component={Landing} />
         <Route

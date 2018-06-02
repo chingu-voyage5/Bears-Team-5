@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../logo.svg';
 
 export default class Landing extends React.Component {
@@ -12,6 +13,10 @@ export default class Landing extends React.Component {
         <p className="App-intro">
           Bears-5 PWA to come.
         </p>
+        {/* THIS LINKS BELOW ARE JUST FOR TESTING PURPOSES.
+        REMOVE WHEN IMPLEMENTING LANDING PAGE */}
+        <Link to="/login" >Login</Link>
+        <Link to="/signup" >Signup</Link>
       </div>
     );
   }

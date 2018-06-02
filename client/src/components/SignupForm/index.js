@@ -6,9 +6,23 @@ import * as Yup from 'yup';
 
 import * as SC from './StyledComponents';
 
+function equalTo(ref, msg) {
+  return Yup.mixed().test({
+    name: 'equalTo',
+    exclusive: false,
+    message: msg || '{path} must be the same as {reference}',
+    params: {
+      reference: ref.path,
+    },
+    // eslint-disable-next-line object-shorthand
+    test: function customTest(value) { return value === this.resolve(ref); },
+  });
+}
+Yup.addMethod(Yup.string, 'equalTo', equalTo);
+
 const formikEnhancer = withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: () => ({ email: '', password: '' }),
+  mapPropsToValues: () => ({ email: '', password: '', passwordConfirm: '' }),
   // Validate form
   validationSchema: Yup.object().shape({
     email: Yup.string()
@@ -17,10 +31,17 @@ const formikEnhancer = withFormik({
     password: Yup.string()
       .min(3, 'Passwords need to be longer than that!')
       .required('Password is required!'),
+    passwordConfirm: Yup.string()
+      .min(3, 'Passwords need to be longer than that!')
+      .equalTo(Yup.ref('password'), 'Passwords must match')
+      .required('Password is required!'),
   }),
   // Submission handler
   handleSubmit: (values, { props, setSubmitting }) => {
-    props.login(values);
+    props.signup({
+      email: values.email,
+      password: values.password,
+    });
     setSubmitting(false);
   },
 });
@@ -57,6 +78,20 @@ const InnerForm = ({
         value={values.password}
       />
       {touched.password && errors.password && <SC.Error>{errors.password}</SC.Error>}
+    </SC.FormField>
+    <SC.FormField>
+      <SC.Input
+        type="password"
+        name="passwordConfirm"
+        placeholder="Confirm password"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.passwordConfirm}
+      />
+      { touched.passwordConfirm &&
+        errors.passwordConfirm &&
+        <SC.Error>{errors.passwordConfirm}</SC.Error>
+      }
     </SC.FormField>
     <SC.Button type="submit" disabled={isSubmitting}>
       Submit
