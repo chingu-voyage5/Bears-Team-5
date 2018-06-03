@@ -1,12 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-const middleware = require('./middleware');
+const middleware = require('../config/middleware');
+const api = require('./api');
 
 const app = express();
 
 app.use(middleware);
-
-// Test Route (to be deleted)
-app.get('/', (req, res) => res.send('Hello world!'));
+app.use('/api', api);
 
 module.exports = app;
