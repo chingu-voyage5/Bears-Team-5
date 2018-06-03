@@ -10,7 +10,7 @@
  */
 const localSignupCallback = async (req, email, password, done) => {
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ where: { email } });
     if (user) { return done(null, false); }
     else {
       let newUser = new User();
@@ -29,7 +29,7 @@ const localSignupCallback = async (req, email, password, done) => {
  * @callback done Passport callback: authenticated user
  */
 const localLoginCallback = async (email, password, done) => {
-  User.findOne({ email }, (err, user) => {
+  User.findOne({ where: { email } }, (err, user) => {
     if (err) { return done(err); }
     if (!user) { return done(null, false, { message: 'Email not found.' }) }
     if (!user.validPassword(password)) { return done(null, false, { message: 'Incorrect password.' }) }
@@ -53,7 +53,7 @@ const authCallback = async (
 ) => {
   try {
     const user = (
-      await User.findOne({ googleID: id }) ||
+      await User.findOne({ where: { googleID: id } }) ||
       await User.create({ googleID: id, name: displayName, email: emails[0].value })
     );
     return done(null, user);
