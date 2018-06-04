@@ -38,3 +38,8 @@ export const Error = styled.div`
   color: ${({ theme }) => theme.error};
   text-align: center;
 `;
+
+export const SpinnerContainer = styled.div`
+  color: ${({ theme }) => theme.error};
+  text-align: center;
+`;
