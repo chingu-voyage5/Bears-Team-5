@@ -3,56 +3,56 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import LoginForm from '../../components/LoginForm';
+import SignupForm from '../../components/SignupForm';
 import * as SC from './StyledComponents';
 
 import * as actions from '../../actions/auth';
 
 
-function Login(props) {
+function Signup(props) {
   const {
-    login,
+    signup,
     errors,
     isFetching,
     isAuthorized,
   } = props;
   if (isAuthorized) return <Redirect to="/" />;
   return (
-    <SC.LoginContainer>
-      <SC.LoginFormContainer>
-        <SC.Title>login</SC.Title>
-        <LoginForm login={login} isFetching={isFetching} />
+    <SC.SignupContainer>
+      <SC.SignupFormContainer>
+        <SC.Title>signup</SC.Title>
+        <SignupForm signup={signup} isFetching={isFetching} />
         { errors.request && <SC.Error>{ errors.request }</SC.Error>}
-      </SC.LoginFormContainer>
-    </SC.LoginContainer>
+      </SC.SignupFormContainer>
+    </SC.SignupContainer>
   );
 }
 
 
-Login.propTypes = {
-  login: PropTypes.func,
+Signup.propTypes = {
+  signup: PropTypes.func,
   isFetching: PropTypes.bool,
   isAuthorized: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
-Login.defaultProps = {
-  login: () => {},
+Signup.defaultProps = {
+  signup: () => {},
   isFetching: false,
   isAuthorized: false,
   errors: {},
 };
 
 
-const mapStateToProps = ({ login, user }) => ({
+const mapStateToProps = ({ signup, user }) => ({
   isAuthorized: user.isAuthorized,
-  isFetching: login.isFetching,
-  errors: login.errors,
+  isFetching: signup.isFetching,
+  errors: signup.errors,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  login: loginData => dispatch(actions.login.request(loginData)),
+  signup: signupData => dispatch(actions.signup.request(signupData)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
