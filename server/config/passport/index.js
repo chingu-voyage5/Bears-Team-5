@@ -1,7 +1,7 @@
 const passport = require('passport');
 
-const GoogleStrategy = require('./google');
-const LocalStrategy = require('./local');
+const GoogleAuth = require('./google');
+const { localSignup, localLogin } = require('./local');
 const {
   serializeUser,
   deserializeUser,
@@ -10,7 +10,8 @@ const {
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-passport.use(LocalStrategy);
-passport.use(GoogleStrategy);
+passport.use(localSignup);
+passport.use(localLogin);
+passport.use(GoogleAuth);
 
 module.exports = passport;

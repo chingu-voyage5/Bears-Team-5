@@ -5,7 +5,9 @@
  * @param {string} user: User instance
  * @callback Passport callback: serialized user ID
  */
-const serializeUser = (user, done) => done(null, user.id);
+const serializeUser = (user, done) => {
+  done(null, user.id)
+};
 
 /**
  * Deserializes user ID to find authenticated user

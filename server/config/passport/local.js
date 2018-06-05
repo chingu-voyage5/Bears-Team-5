@@ -9,9 +9,9 @@ const { localSignupCallback, localLoginCallback } = require('./callback');
  * @param {string} password
  * @callback done
  */
-passport.use('local-signup', new LocalStrategy((username, password, done) => {
+const localSignup = new LocalStrategy((email, password, done) => {
   localSignupCallback
-}));
+});
 
 /**
  * Passport Local Login Strategy
@@ -19,8 +19,8 @@ passport.use('local-signup', new LocalStrategy((username, password, done) => {
  * @param {string} password
  * @callback done
  */
-passport.use('local-login', new LocalStrategy((username, password, done) => {
+const localLogin = new LocalStrategy((email, password, done) => {
   localLoginCallback
-}));
+});
 
-module.exports = passport;
+module.exports = { localSignup, localLogin };

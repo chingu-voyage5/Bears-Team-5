@@ -21,3 +21,4 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login' 
 }));
 
+module.exports = router;

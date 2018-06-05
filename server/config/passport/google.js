@@ -3,7 +3,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const { authCallback } = require('./callback');
 
-const GoogleStrategy = new GoogleStrategy(
+const GoogleAuth = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -12,4 +12,4 @@ const GoogleStrategy = new GoogleStrategy(
   authCallback,
 );
 
-module.exports = GoogleStrategy;
+module.exports = GoogleAuth;
