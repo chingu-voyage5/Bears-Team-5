@@ -4,28 +4,41 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import LoginForm from '../../components/LoginForm';
+import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
 
 import * as actions from '../../actions/auth';
 
 
-function Login(props) {
-  const {
-    login,
-    errors,
-    isFetching,
-    isAuthorized,
-  } = props;
-  if (isAuthorized) return <Redirect to="/" />;
-  return (
-    <SC.LoginContainer>
-      <SC.LoginFormContainer>
-        <SC.Title>login</SC.Title>
-        <LoginForm login={login} isFetching={isFetching} />
-        { errors.request && <SC.Error>{ errors.request }</SC.Error>}
-      </SC.LoginFormContainer>
-    </SC.LoginContainer>
-  );
+class Login extends React.Component {
+  constructor() {
+    super();
+    this.checkFetching = this.checkFetching.bind(this);
+  }
+
+  checkFetching() {
+    return this.props.isFetching;
+  }
+
+  render() {
+    const {
+      login,
+      errors,
+      isAuthorized,
+      isFetching,
+    } = this.props;
+    if (isAuthorized) return <Redirect to="/" />;
+    return (
+      <SC.LoginContainer>
+        <SC.LoginFormContainer>
+          <SC.Title>login</SC.Title>
+          <LoginForm login={login} checkFetching={this.checkFetching} />
+          { errors.request && <SC.Error>{ errors.request }</SC.Error>}
+          { isFetching && <SC.SpinnerContainer><Spinner /></SC.SpinnerContainer>}
+        </SC.LoginFormContainer>
+      </SC.LoginContainer>
+    );
+  }
 }
 
 

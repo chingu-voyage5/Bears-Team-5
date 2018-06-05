@@ -8,7 +8,7 @@ import * as SC from './StyledComponents';
 
 const formikEnhancer = withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: () => ({ email: '', password: '' }),
+  mapPropsToValues: props => ({ email: '', password: '', checkFetching: props.checkFetching }),
   // Validate form
   validationSchema: Yup.object().shape({
     email: Yup.string()
@@ -33,7 +33,6 @@ const InnerForm = ({
   handleChange,
   handleBlur,
   handleSubmit,
-  isSubmitting,
 }) => (
   <SC.Form onSubmit={handleSubmit}>
     <SC.FormField>
@@ -58,7 +57,7 @@ const InnerForm = ({
       />
       {touched.password && errors.password && <SC.Error>{errors.password}</SC.Error>}
     </SC.FormField>
-    <SC.Button type="submit" disabled={isSubmitting}>
+    <SC.Button type="submit" disabled={values.checkFetching()}>
       Submit
     </SC.Button>
   </SC.Form>
