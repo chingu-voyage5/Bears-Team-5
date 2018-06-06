@@ -47,7 +47,7 @@ See link below for instructions on how to get your development environment setup
 | cypress        | Runs cypress testing suite (specify tests)                            |
 | cypress:all    | Runs all cypress tests                                                |
 | server         | Runs express server on `localhost:3001`                               |
-| dev-server     | Runs express server on `localhost:3001` with nodemon                  |
+| dev            | Runs express server on `localhost:3001` with nodemon                  |
 
 ## Build Tools
 * Front-End  
