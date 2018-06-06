@@ -1,4 +1,5 @@
 // Require user models here `User`
+const { comparePass, hashPass } = require('./helper');
 
 /**
  * Callback function for passport local signup
@@ -8,14 +9,14 @@
  * @param {password} password: user password
  * @callback done Passport callback: authenticated user
  */
-const localSignupCallback = async (req, email, password, done) => {
+const localSignupCallback = async (email, password, done) => {
   try {
     let user = await User.findOne({ where: { email } });
     if (user) { return done(null, false); }
     else {
       let newUser = new User();
       newUser.email = email;
-      newUser.password = password; // need hash method here
+      newUser.password = hashPass(password); // need hash method here
       newUser = await newUser.save();
       return done(null, user);  
     }
@@ -29,12 +30,12 @@ const localSignupCallback = async (req, email, password, done) => {
  * @callback done Passport callback: authenticated user
  */
 const localLoginCallback = async (email, password, done) => {
-  User.findOne({ where: { email } }, (err, user) => {
-    if (err) { return done(err); }
+  try {
+    let user = await User.findOne({ where: { email } });
     if (!user) { return done(null, false, { message: 'Email not found.' }) }
-    if (!user.validPassword(password)) { return done(null, false, { message: 'Incorrect password.' }) }
+    if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }) }
     return done(null, user);
-  });
+  } catch (err) { return done(err); }
 }
 
 /**

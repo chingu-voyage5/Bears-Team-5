@@ -10,8 +10,8 @@ const {
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-passport.use(localSignup);
-passport.use(localLogin);
+passport.use('local-signup', localSignup);
+passport.use('local-login', localLogin);
 passport.use(GoogleAuth);
 
 module.exports = passport;

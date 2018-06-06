@@ -9,8 +9,12 @@ const { localSignupCallback, localLoginCallback } = require('./callback');
  * @param {string} password
  * @callback done
  */
-const localSignup = new LocalStrategy((email, password, done) => {
-  localSignupCallback
+const localSignup = new LocalStrategy({
+  usernameField : 'email',
+  passwordField : 'password',
+  passReqToCallback : false,
+}, (email, password, done) => {
+  localSignupCallback(email, password, done);
 });
 
 /**
@@ -19,8 +23,12 @@ const localSignup = new LocalStrategy((email, password, done) => {
  * @param {string} password
  * @callback done
  */
-const localLogin = new LocalStrategy((email, password, done) => {
-  localLoginCallback
+const localLogin = new LocalStrategy({
+  usernameField : 'email',
+  passwordField : 'password',
+  passReqToCallback : false,
+}, (email, password, done) => {
+  localLoginCallback(email, password, done);
 });
 
 module.exports = { localSignup, localLogin };
