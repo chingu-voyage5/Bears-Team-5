@@ -1,15 +1,11 @@
-require('dotenv').config();
 const Sequelize = require('sequelize');
-const USERNAME = process.env.USERNAME;
-const PASSWORD = process.env.PASSWORD;
-const DB_NAME = process.env.DB_NAME;
-const DB_URL = process.env.DB_URL;
+const config = require('../../config/config');
 
 // Connect all the models/tables in the database to a db object,
-//so everything is accessible via one object
-
-const sequelize = new Sequelize(DB_NAME, USERNAME, PASSWORD, {
-  host: DB_URL,
+//so everything is accessible via one 
+console.log("Connecting to DB", config.host, config.database);
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+  host: config.host,
   dialect: 'postgres',
   operatorsAliases: false,
   pool: {
