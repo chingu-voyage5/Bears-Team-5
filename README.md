@@ -2,6 +2,7 @@
 Progress/Wellness PWA to track goals and create data visualizations for your progress.  
 [Chingu](https://chingu.io/) | [Voyage-5](https://github.com/chingu-voyage5)  
 
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/chingu-voyage5/Bears-Team-5.svg?columns=all)](https://waffle.io/chingu-voyage5/Bears-Team-5)  
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?)](https://github.com/chingu-voyage5/Bears-Team-5/pulls)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/chingu-voyage5/Bears-Team-5/blob/master/LICENSE)
 [![node](https://img.shields.io/badge/node-v8.11.2-blue.svg)](https://nodejs.org/en/)
@@ -46,7 +47,7 @@ See link below for instructions on how to get your development environment setup
 | cypress        | Runs cypress testing suite (specify tests)                            |
 | cypress:all    | Runs all cypress tests                                                |
 | server         | Runs express server on `localhost:3001`                               |
-| dev-server     | Runs express server on `localhost:3001` with nodemon                  |
+| dev            | Runs express server on `localhost:3001` with nodemon                  |
 
 ## Build Tools
 * Front-End  
