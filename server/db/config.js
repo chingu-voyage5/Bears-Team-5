@@ -5,6 +5,7 @@ const config = require('../../config/config');
 //so everything is accessible via one 
 console.log("Connecting to DB", config.host, config.database);
 const sequelize = new Sequelize(config.database, config.username, config.password, {
+  port: config.port,
   host: config.host,
   dialect: 'postgres',
   operatorsAliases: false,
