@@ -38,4 +38,7 @@ if (
   throw Error('Bad NODE_ENV. Only accepted are: production, test and development. Got '+ NODE_ENV);
 }
 console.log('Running in NODE_ENV: ' + NODE_ENV);
-module.exports = configs[NODE_ENV];
+module.exports = {
+  ...configs,
+  default: configs[NODE_ENV],
+};

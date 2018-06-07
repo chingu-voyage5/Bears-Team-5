@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
-const config = require('../../config/config');
+const config = require('../../config/config').default;
 
 // Connect all the models/tables in the database to a db object,
 //so everything is accessible via one 
-console.log("Connecting to DB", config.host, config.database);
+console.log("Connecting to DB", config.host, config.port, config.database);
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   port: config.port,
   host: config.host,
