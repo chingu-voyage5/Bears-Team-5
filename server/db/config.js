@@ -28,10 +28,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Models/tables
-db.users = require('./models/users.js')(sequelize, Sequelize);
-db.longgoals = require('./models/longGoals.js')(sequelize, Sequelize);
-db.shortgoals = require('./models/shortGoals.js')(sequelize, Sequelize);
-db.badges = require('./models/badges.js')(sequelize, Sequelize);
+db.users = require('../../models/user.js')(sequelize, Sequelize);
+db.longgoals = require('../../models/longGoal.js')(sequelize, Sequelize);
+db.shortgoals = require('../../models/shortGoal.js')(sequelize, Sequelize);
+db.badges = require('../../models/badge.js')(sequelize, Sequelize);
 
 // Relations
 db.users.hasMany(db.longgoals);
