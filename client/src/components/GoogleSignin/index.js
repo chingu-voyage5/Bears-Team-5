@@ -3,18 +3,7 @@ import * as SC from './StyledComponents';
 import GoogleIcon from '../../assets/googleicon.png';
 
 class GoogleSignin extends React.Component {
-  // handleGoogleLogin = () => {
-  //   window.location.href = '/api/auth/google';
-  // }
-  // onSuccess = (googleUser) => {
-  //   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  // }
-
-  // onFailure = (error) => {
-  //   console.log(error);
-  // }
   render() {
-    console.log('hello from google sign-in');
     return (
       <div>
         <SC.GoogleLoginButton>
