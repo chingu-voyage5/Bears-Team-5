@@ -22,7 +22,12 @@ Yup.addMethod(Yup.string, 'equalTo', equalTo);
 
 const formikEnhancer = withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: () => ({ email: '', password: '', passwordConfirm: '' }),
+  mapPropsToValues: props => ({
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    checkFetching: props.checkFetching,
+  }),
   // Validate form
   validationSchema: Yup.object().shape({
     email: Yup.string()
@@ -54,7 +59,6 @@ const InnerForm = ({
   handleChange,
   handleBlur,
   handleSubmit,
-  isSubmitting,
 }) => (
   <SC.Form onSubmit={handleSubmit}>
     <SC.FormField>
@@ -93,7 +97,7 @@ const InnerForm = ({
         <SC.Error>{errors.passwordConfirm}</SC.Error>
       }
     </SC.FormField>
-    <SC.Button type="submit" disabled={isSubmitting}>
+    <SC.Button type="submit" disabled={values.checkFetching()}>
       Submit
     </SC.Button>
   </SC.Form>
