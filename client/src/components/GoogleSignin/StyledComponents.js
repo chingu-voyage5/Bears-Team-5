@@ -3,19 +3,26 @@ import styled from 'styled-components';
 export const GoogleLoginButton = styled.div`
   display: flex;
   align-items: center;
-  height: 50px;
+  justify-content: space-between;
+  height: 45px;
   width: 200px;
   background-color: #4285F4;
   color: white;
+  font-size: 16px;
+  padding: 2px;
+  padding-right: 25px;
 `;
 
 export const GoogleIcon = styled.div`
-  height: 25px;
-  width: 25px;
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
+  background-color: white;
 `;
 
 export const GoogleImg = styled.img`
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 `;
