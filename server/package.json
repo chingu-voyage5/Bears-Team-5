@@ -1,14 +1,15 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/www"
   },
   "devDependencies": {
+    "cross-env": "^5.1.6",
+    "mysql2": "^1.5.3",
     "nodemon": "^1.17.5"
   },
   "dependencies": {
@@ -21,8 +22,15 @@
     "express-session": "^1.15.6",
     "helmet": "^3.12.1",
     "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0",
+    "umzug": "^2.1.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

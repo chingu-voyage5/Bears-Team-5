@@ -1,4 +1,4 @@
-// Require user models here
+const User = require('../../models/user');
 
 /**
  * Serializes user ID to be stored in coookie

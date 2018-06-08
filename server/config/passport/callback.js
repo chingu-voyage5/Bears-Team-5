@@ -1,7 +1,4 @@
-// -------------------------------
-// Require user models here: `User`
-// -------------------------------
-
+const User = require('../../models/user');
 const { comparePass, hashPass } = require('./helper');
 
 /**
@@ -29,6 +26,7 @@ const localSignupCallback = async (email, password, done) => {
  * @callback done Passport callback: authenticated user
  */
 const localLoginCallback = async (email, password, done) => {
+  console.log('THE USER: ', db.user, User);
   try {
     let user = await User.findOne({ where: { email } });
     if (!user) { return done(null, false, { message: 'Email not found.' }) }
