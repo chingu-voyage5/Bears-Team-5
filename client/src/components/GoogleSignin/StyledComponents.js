@@ -5,12 +5,13 @@ export const GoogleLoginButton = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 45px;
-  width: 200px;
   background-color: #4285F4;
   color: white;
   font-size: 16px;
   padding: 2px;
   padding-right: 25px;
+  margin-bottom: 2rem;
+  cursor: pointer;
 `;
 
 export const GoogleIcon = styled.div`
