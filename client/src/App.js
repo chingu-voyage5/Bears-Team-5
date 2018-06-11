@@ -7,6 +7,7 @@ import Logout from './containers/Logout';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Landing from './containers/Landing';
+import Goals from './containers/Goals';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/logout" component={Logout} />
+        <Route path="/goals" component={Goals} />
         <Route path="/" exact component={Landing} />
         <Route
           path="/*"
