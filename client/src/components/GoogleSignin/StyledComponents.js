@@ -9,7 +9,7 @@ export const GoogleLoginButton = styled.div`
   color: white;
   font-size: 16px;
   padding: 2px;
-  padding-right: 25px;
+  padding-right: 20%;
   margin-bottom: 2rem;
   cursor: pointer;
 `;
