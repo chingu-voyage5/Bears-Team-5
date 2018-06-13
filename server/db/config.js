@@ -34,8 +34,8 @@ db.shortgoals = require('../models/shortGoal.js')(sequelize, Sequelize);
 db.badges = require('../models/badge.js')(sequelize, Sequelize);
 
 // Relations
-db.users.hasMany(db.longgoals);
-db.longgoals.hasMany(db.shortgoals);
-db.users.hasMany(db.badges);
+// db.users.hasMany(db.longgoals);
+// db.longgoals.hasMany(db.shortgoals);
+// db.users.hasMany(db.badges);
 
 module.exports = db;
