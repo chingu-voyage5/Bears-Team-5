@@ -57,6 +57,16 @@ A recap of all the api routes
 * `POST /api/auth/logout`: TODO. Is this necessary? Maybe to close the session on the backend.
 * `GET /api/goals/daily`: Gets daily goals
 
+### Migrations
+Run commands from the root folder
+
+* `sequelize db:migrate`: Run migrations FROM the last migration made
+* `sequelize db:migrate:undo`: Undo LAST migration
+* `sequelize db:migrate:undo:all`: Undo ALL migrations
+* `sequelize db:seed:all`: Seed all
+
+More info on migrations [here](http://docs.sequelizejs.com/manual/tutorial/migrations.html).
+
 ## Build Tools
 * Front-End  
   * [React](https://reactjs.org/) v16
