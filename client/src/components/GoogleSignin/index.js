@@ -1,24 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import * as SC from './StyledComponents';
 import GoogleIcon from '../../assets/googleicon.png';
 
-class GoogleSignin extends React.Component {
-  handleGoogleAuth() {
-    // TODO: Add passport routing functionality
-    // Temporarily disabled
-  }
 
-  render() {
-    return (
-      <div>
-        <SC.GoogleLoginButton disabled onClick={() => this.handleGoogleAuth()}>
-          <SC.GoogleIcon>
-            <SC.GoogleImg src={GoogleIcon} />
-          </SC.GoogleIcon>
-        Sign in with Google
-        </SC.GoogleLoginButton>
-      </div>
-    );
-  }
-}
+const GoogleSignin = props => (
+  <SC.GoogleLoginButton disabled={props.disabled} onClick={props.onClick}>
+    <SC.GoogleIcon>
+      <SC.GoogleImg src={GoogleIcon} disabled={props.disabled}/>
+    </SC.GoogleIcon>
+    Sign in with Google
+  </SC.GoogleLoginButton>
+);
+
+
+GoogleSignin.propTypes = {
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+GoogleSignin.defaultProps = {
+  onClick: () => {},
+  disabled: false,
+};
+
 export default GoogleSignin;
