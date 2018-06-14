@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../models').user;
 const { comparePass, hashPass } = require('./helper');
 
 /**
@@ -9,6 +9,9 @@ const { comparePass, hashPass } = require('./helper');
  * @callback done Passport callback: authenticated user
  */
 const localSignupCallback = async (email, password, done) => {
+  // console.log('THE DB: ', db.user);
+  console.log('THE USER: ', User);
+
   try {
     const user = await User.findOne({ where: { email } });
     if (user) { return done(null, false); }
