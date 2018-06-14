@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const app = require('../server');
+const PORT = process.env.PORT || 3001;
+db = require('../db/config'),
+
+db.sequelize.sync({force: true}).then(() => {
+  console.log("Connected to DB succesfully!");
+  app.listen(PORT, () => console.log(`Listening to server on PORT: ${PORT}`));
+});

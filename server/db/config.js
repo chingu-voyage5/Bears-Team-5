@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const config = require('../../config/config').default;
+const config = require('../config/config').default;
 
 // Connect all the models/tables in the database to a db object,
 //so everything is accessible via one 
@@ -28,10 +28,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Models/tables
-db.users = require('../../models/user.js')(sequelize, Sequelize);
-db.longgoals = require('../../models/longGoal.js')(sequelize, Sequelize);
-db.shortgoals = require('../../models/shortGoal.js')(sequelize, Sequelize);
-db.badges = require('../../models/badge.js')(sequelize, Sequelize);
+db.users = require('../models/user.js')(sequelize, Sequelize);
+db.longgoals = require('../models/longGoal.js')(sequelize, Sequelize);
+db.shortgoals = require('../models/shortGoal.js')(sequelize, Sequelize);
+db.badges = require('../models/badge.js')(sequelize, Sequelize);
 
 // Relations
 db.users.hasMany(db.longgoals);
