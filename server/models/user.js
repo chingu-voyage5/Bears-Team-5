@@ -8,12 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       required: true
     },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
+    google_id: DataTypes.STRING,
     created_at: {
       type: DataTypes.DATE,
       allowNull: false
@@ -23,5 +24,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     underscored: true
   });
+    User.associate = function(models) {
+      User.hasMany(models.longgoals, {
+        foreignKey: 'user_id',
+      });
+      User.hasMany(models.badges, {
+        foreignKey: 'user_id',
+      });
+    };
   return User;
 };

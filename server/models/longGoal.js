@@ -25,5 +25,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     underscored: true
   });
+
+  LongGoal.associate = function(models) {
+    LongGoal.hasMany(models.shortgoal, {
+      foreignKey: 'longgoal_id',
+    });
+  };;
   return LongGoal;
 };
