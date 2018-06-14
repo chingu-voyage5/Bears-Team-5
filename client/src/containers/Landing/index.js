@@ -15,7 +15,11 @@ export default class Landing extends React.Component {
         </p>
         {/* THIS LINKS BELOW ARE JUST FOR TESTING PURPOSES.
         REMOVE WHEN IMPLEMENTING LANDING PAGE */}
+        <hr />
+        <Link to="/goals" >Goals</Link>
+        <hr />
         <Link to="/login" >Login</Link>
+        <hr />
         <Link to="/signup" >Signup</Link>
       </div>
     );

@@ -49,6 +49,14 @@ See link below for instructions on how to get your development environment setup
 | server         | Runs express server on `localhost:3001`                               |
 | dev-server     | Runs express server on `localhost:3001` with nodemon                  |
 
+### Routes
+A recap of all the api routes
+
+* `POST /api/auth/login`: Login route
+* `POST /api/auth/signin`: Signin route
+* `POST /api/auth/logout`: TODO. Is this necessary? Maybe to close the session on the backend.
+* `GET /api/goals/daily`: Gets daily goals
+
 ## Build Tools
 * Front-End  
   * [React](https://reactjs.org/) v16
