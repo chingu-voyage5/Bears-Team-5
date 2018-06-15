@@ -13,16 +13,18 @@ import App from './App';
 
 const store = configureStore();
 
-// TODO: Added random theme, needs cool theme
 const theme = {
-  darkPrimaryColor: '#512DA8',
-  defaultPrimaryColor: '#673AB7',
-  lightPrimaryColor: '#D1C4E9',
-  textPrimaryColor: '#FFFFFF',
-  accentColor: '#FFC107',
-  primaryTextColor: '#212121',
-  secondaryTextColor: '#757575',
-  dividerColor: '#BDBDBD',
+  background: {
+    primary: '#3e464c',
+    secondary: '#333',
+  },
+  text: {
+    primary: '#EEE',
+    secondary: '#DDD',
+  },
+  primary: '#21BC6E',
+  secondary: '#1E303C',
+  active: '#ffb74d',
   error: '#F44336',
 };
 
