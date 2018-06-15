@@ -14,12 +14,13 @@ const LandingWrapper = styled.div`
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center bottom; 
+  background-size: cover;
 `;
 
 const Title = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 2.5em;
+  font-size: 2.75em;
   font-weight: 300;
   justify-content: center;
   align-items: center;
@@ -42,11 +43,17 @@ const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
+  margin-top: 20vh;
+
+  & > div:last-child  {
+    background-color: ${props => props.theme.primary};
+  }
 
 
   /* Mobile */
-  @media (max-width: 599px) {
+  @media (max-width: 768px) {
+    margin-top: 0;
+    flex-direction: row;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -78,6 +85,8 @@ const ButtonLink = styled(__ButtonLink)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 0 1rem;
+  padding: 0.25rem 1rem;
 
   & > a {
     text-decoration: none;
@@ -88,8 +97,9 @@ const ButtonLink = styled(__ButtonLink)`
   }
 
    /* Mobile */
-  @media (max-width: 599px) {
+  @media (max-width: 768px) {
     width: 50%;
+    margin: 0;
   }
 `;
 
@@ -98,7 +108,7 @@ export default class Landing extends React.Component {
     return (
       <LandingWrapper>
         <Title>title</Title>
-        <Subtitle>productivity thingy</Subtitle>
+        <Subtitle>pwa productivity thingy</Subtitle>
 
         <ButtonsContainer>
           <ButtonLink to="/login" text="SIGN IN" />
