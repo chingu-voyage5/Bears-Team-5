@@ -43,10 +43,13 @@ const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 30vh;
 
   & > div:last-child  {
     background-color: ${props => props.theme.primary};
+  }
+  & > div:first-child  {
+    text-decoration: underline;
   }
 
 
@@ -58,11 +61,9 @@ const ButtonsContainer = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-
     background-color: ${props => props.theme.secondary};
-
-    & > div:last-child  {
-      background-color: ${props => props.theme.primary};
+    & > div:first-child  {
+      text-decoration: none;
     }
   }
 `;
@@ -86,13 +87,13 @@ const ButtonLink = styled(__ButtonLink)`
   justify-content: center;
   align-items: center;
   margin: 0 1rem;
-  padding: 0.25rem 1rem;
-
+  &:hover {
+    filter: brightness(90%);
+  }
   & > a {
     text-decoration: none;
     font-weight: bold;
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
     color: ${props => props.theme.text.primary};
   }
 
