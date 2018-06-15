@@ -9,7 +9,7 @@ const Landing = () => (
     <SC.Subtitle>pwa productivity thingy</SC.Subtitle>
 
     <SC.ButtonsContainer>
-      <SC.ButtonLink to="/login" text="SIGN IN" />
+      <SC.ButtonLink to="/signin" text="SIGN IN" />
       <SC.ButtonLink to="/signup" text="SIGN UP" />
     </SC.ButtonsContainer>
 

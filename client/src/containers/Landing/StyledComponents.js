@@ -10,7 +10,6 @@ export const LandingWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  /* background-color: ${props => props.theme.background.primary}; */
   background-image: url(${backgroundImg});
   background-repeat: no-repeat;
   background-attachment: fixed;

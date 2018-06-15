@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import Logout from './containers/Logout';
-import Login from './containers/Login';
+import Signin from './containers/Signin';
 import Signup from './containers/Signup';
 import Landing from './containers/Landing';
 import Goals from './containers/Goals';
@@ -13,7 +13,7 @@ export default function App() {
   return (
     <React.Fragment>
       <Switch>
-        <Route path="/login" component={Login} />
+        <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/logout" component={Logout} />
         <Route path="/goals" component={Goals} />

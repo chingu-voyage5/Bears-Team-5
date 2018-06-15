@@ -8,7 +8,7 @@ import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
 import * as actions from '../../actions/auth';
 
-class Login extends React.Component {
+class Signin extends React.Component {
   constructor() {
     super();
     this.checkFetching = this.checkFetching.bind(this);
@@ -27,28 +27,30 @@ class Login extends React.Component {
     } = this.props;
     if (isAuthorized) return <Redirect to="/" />;
     return (
-      <SC.LoginContainer>
-        <SC.LoginFormContainer>
-          <SC.Title>login</SC.Title>
+      <SC.SigninContainer>
+        <SC.ContentContainer>
+          <SC.Title>signin</SC.Title>
           <GoogleSignin />
-          <LoginForm login={login} checkFetching={this.checkFetching} />
+          <SC.FormContainer>
+            <LoginForm login={login} checkFetching={this.checkFetching} />
+          </SC.FormContainer>
           { errors.request && <SC.Error>{ errors.request }</SC.Error>}
           { isFetching && <SC.SpinnerContainer><Spinner /></SC.SpinnerContainer>}
-        </SC.LoginFormContainer>
-      </SC.LoginContainer>
+        </SC.ContentContainer>
+      </SC.SigninContainer>
     );
   }
 }
 
 
-Login.propTypes = {
+Signin.propTypes = {
   login: PropTypes.func,
   isFetching: PropTypes.bool,
   isAuthorized: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
-Login.defaultProps = {
+Signin.defaultProps = {
   login: () => {},
   isFetching: false,
   isAuthorized: false,
@@ -67,4 +69,4 @@ const mapDispatchToProps = dispatch => ({
   login: loginData => dispatch(actions.login.request(loginData)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

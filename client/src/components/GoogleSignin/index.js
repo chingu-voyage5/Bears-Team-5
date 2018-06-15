@@ -10,7 +10,9 @@ const GoogleSignin = props => (
     <SC.GoogleIcon>
       <SC.GoogleImg src={GoogleIcon} disabled={props.disabled}/>
     </SC.GoogleIcon>
-    Sign in with Google
+    <SC.Message>
+      Sign in with Google
+    </SC.Message>
   </SC.GoogleLoginButton>
 );
 
