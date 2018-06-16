@@ -27,3 +27,5 @@ yarn-error.log*
 # Cypress screenshots & videos
 cypress/screenshots
 cypress/videos
+
+sequelizeMeta.json
