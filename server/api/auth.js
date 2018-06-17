@@ -6,35 +6,59 @@ const { checkLogin } = require('../config/passport/helper');
  * POST ROUTE
  * CREATE -- Make new user
  * Utilize passport.authenticate middleware
- *  * TODO: Add flash/toast message for successful signup
  */
-router.post('/signup', passport.authenticate('local-signup', {
-  failureRedirect : '/signup', 
-}), (req, res) => {
-  console.log('successfully signed up: ', req.user);
-  res.send(req.user);
+router.post('/signup', (req, res, next) => {
+  passport.authenticate('local-signup', (err, user, info) => {
+    if (err) return res.status(500).send(err);
+    if (user) return res.status(200).send(user);
+    if (info) return res.status(401).send(info.message);
+  })(req, res, next);
 });
 
 /*
  * POST ROUTE
  * READ -- Login user
  * Utilize passport.authenticate middleware
- *  * TODO: Add flash/toast message for successful login
  */
-router.post('/login', passport.authenticate('local-login', { 
-  successRedirect: '/',
-  failureRedirect: '/login' 
-}));
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local-login', (err, user, info) => {
+    if (err) return res.status(500).send(err);
+    if (user) return res.status(200).send(user);
+    if (info) return res.status(401).send(info.message);
+  })(req, res, next);
+});
 
 /**
  * GET ROUTE
  * READ -- Logout user
  * Utilize `helper.js` middleware to check if user is logged in first
- * TODO: Add flash/toast message for successful logout
  */
 router.get('/logout', checkLogin, (req, res) => {
   req.logout();
-  res.redirect('/');
-})
+  res.status(200).send({ message: 'Successfully logged out user!' });
+});
+
+/////////////////////////////////////////////////
+// TODO: TEST GOOGLE AUTHENTICATION ROUTES //////
+/////////////////////////////////////////////////
+
+/*
+ * GET ROUTE
+ * READ -- Login user via Google authentication
+ */
+router.get('/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
+
+/*
+ * GET ROUTE
+ * READ -- Callback Google authentication
+ */
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect : '/signup'
+}), (req, res) => {
+  console.log('successfully logged in through google: ', req.user);
+  res.redirect('/user/' + req.user._id);
+});
 
 module.exports = router;

@@ -14,10 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    googleID: {
-      type: DataTypes.STRING,
-      required: false
-    },
+    google_id: DataTypes.STRING,
     created_at: {
       type: DataTypes.DATE,
       allowNull: false

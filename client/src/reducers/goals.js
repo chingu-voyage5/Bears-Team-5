@@ -20,6 +20,7 @@ export default (state = initialState, action = {}) => {
         },
       };
     case actions.DAILY_GOALS.SUCCESS:
+      console.log('ACTIONS: ', action);
       return {
         ...state,
         dailyGoals: {

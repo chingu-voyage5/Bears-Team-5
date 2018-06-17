@@ -9,15 +9,13 @@ const { comparePass, hashPass } = require('./helper');
  * @callback done Passport callback: authenticated user
  */
 const localSignupCallback = async (email, password, done) => {
-  // console.log('THE DB: ', db.user);
-  console.log('THE USER: ', User);
-
+  email = email.toLowerCase();
   try {
-    const user = await User.findOne({ where: { email } });
-    if (user) { return done(null, false); }
+    const user = await User.findOne({ where: { email: email } });
+    if (user) return done(null, false, { message: 'That email has already been taken. Try another' });
     else {
       const newUser = await User.create({ email, password: hashPass(password) });
-      return done(null, user);  
+      return done(null, newUser);  
     }
   } catch (err) { return done(err); }
 }
@@ -29,11 +27,10 @@ const localSignupCallback = async (email, password, done) => {
  * @callback done Passport callback: authenticated user
  */
 const localLoginCallback = async (email, password, done) => {
-  console.log('THE USER: ', db.user, User);
   try {
     let user = await User.findOne({ where: { email } });
     if (!user) { return done(null, false, { message: 'Email not found.' }) }
-    if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }) }
+    if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }); }
     return done(null, user);
   } catch (err) { return done(err); }
 }
@@ -54,8 +51,8 @@ const authCallback = async (
 ) => {
   try {
     const user = (
-      await User.findOne({ where: { googleID: id } }) ||
-      await User.create({ googleID: id, name: displayName, email: emails[0].value })
+      await User.findOne({ where: { google_id: id } }) ||
+      await User.create({ google_id: id, name: displayName, email: emails[0].value })
     );
     return done(null, user);
   } catch (error) { return done(error, null); }

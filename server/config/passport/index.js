@@ -12,6 +12,6 @@ passport.deserializeUser(deserializeUser);
 
 passport.use('local-signup', localSignup);
 passport.use('local-login', localLogin);
-passport.use(GoogleAuth);
+passport.use('google', GoogleAuth);
 
 module.exports = passport;

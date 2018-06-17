@@ -1,4 +1,7 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({
+  path: path.resolve( process.cwd(), '..', '.env'),
+});
 const express = require('express');
 const middleware = require('./config/middleware');
 const api = require('./api');
