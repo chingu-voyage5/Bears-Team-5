@@ -49,7 +49,7 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-const __Button = styled(({ children, ...rest }) => <div {...rest}>{children}</div>)`
+const __Button = styled(({ children, ...rest }) => <button type="submit" {...rest}>{children}</button>)`
 `;
 
 export const Button = styled(__Button)`
@@ -64,6 +64,10 @@ export const Button = styled(__Button)`
   padding: 0.75rem 1rem;
   color: ${props => props.theme.text.primary};
 
+  background: ${props => props.theme.primary};
+  cursor: pointer;
+  border:none;
+
   &:hover {
     filter: brightness(90%);
   }
@@ -72,7 +76,7 @@ export const Button = styled(__Button)`
   @media (max-width: 768px) {
     flex: 1;
     margin: 0;
-    & > div {
+    & > button {
       width: 100%;
       text-align: center;
     }
@@ -97,6 +101,8 @@ const __Input = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        required
+        autoComplete="off" // autocomplete box positioning needs fixing!
       />
       <span className="highlight"></span>
       <span className="bar"></span>
@@ -137,9 +143,13 @@ export const Input = styled(__Input)`
     border-bottom:1px solid ${props => props.theme.primary};
     background-color: rgba(0,0,0,0);
     caret-color: ${props => props.theme.text.primary};
+    color: ${props => props.theme.text.primary};
   }
   & input:focus {
     outline: none;
+  }
+  & input:-webkit-autofill {
+    background: transparent !important;
   }
 
   /* LABEL */
@@ -153,7 +163,7 @@ export const Input = styled(__Input)`
     top:10px;
     transition:0.2s ease all;
   }
-  & input:focus ~ label {
+  & input:focus ~ label, & input:valid ~ label {
     top:-20px;
     font-size:0.9rem;
     color: ${props => props.theme.primary};

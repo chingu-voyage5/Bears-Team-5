@@ -20,7 +20,7 @@ const formikEnhancer = withFormik({
   }),
   // Submission handler
   handleSubmit: (values, { props, setSubmitting }) => {
-    props.login(values);
+    props.signin(values);
     setSubmitting(false);
   },
 });
@@ -37,7 +37,7 @@ const InnerForm = ({
   <FE.Form onSubmit={handleSubmit}>
     <FE.FormField>
       <FE.Input
-        type="email"
+        type="text" // not email -> breaks animations
         name="email"
         placeholder="Email"
         onChange={handleChange}
