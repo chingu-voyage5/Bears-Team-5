@@ -13,7 +13,6 @@ const getDailyGoalsToAPI = () => axios.get('/api/goals/daily');
 export function* dailyGoalsProcess() {
   try {
     const payload = yield call(getDailyGoalsToAPI);
-    console.log('PAYLOAD: ', payload.data);
     // User data
     yield put(goalsActions.dailyGoals.success(payload.data));
   } catch (e) {
