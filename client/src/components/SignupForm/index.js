@@ -63,7 +63,7 @@ const InnerForm = ({
   <FE.Form onSubmit={handleSubmit}>
     <FE.FormField>
       <FE.Input
-        type="email"
+        type="text"
         name="email"
         placeholder="Email"
         onChange={handleChange}

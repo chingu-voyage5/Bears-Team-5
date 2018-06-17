@@ -18,6 +18,8 @@ export const FormField = styled.div`
 `;
 
 export const Error = styled.div`
+  display: block;
+  margin-top: 2px;
   font-size: 0.75rem;
   color: ${({ theme }) => theme.error};
   text-align: center;
@@ -28,7 +30,7 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 30vh;
+  margin-top: 10vh;
 
   & > div  {
     background-color: ${props => props.theme.primary};
@@ -57,7 +59,8 @@ export const Button = styled(__Button)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0 1rem;
+  margin: 0;
+  flex: 1;
 
   text-decoration: none;
   font-weight: bold;

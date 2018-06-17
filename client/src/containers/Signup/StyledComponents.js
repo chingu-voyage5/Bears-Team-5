@@ -7,6 +7,7 @@ export const SignupContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   
   background-image: url(${backgroundImg});
   background-repeat: no-repeat;
@@ -49,6 +50,8 @@ export const FormContainer = styled.div`
 `;
 
 export const Error = styled.div`
+  display: block;
+  margin-top: 2px;
   font-size: 0.75rem;
   color: ${({ theme }) => theme.error};
   text-align: center;
