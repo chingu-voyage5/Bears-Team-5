@@ -1,4 +1,5 @@
 const session = require('express-session');
+require('dotenv').config();
 
 module.exports = session({
   resave: true,

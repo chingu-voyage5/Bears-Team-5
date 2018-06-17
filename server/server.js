@@ -4,12 +4,12 @@ require('dotenv').config({
 });
 const express = require('express');
 const middleware = require('./middleware');
+const routes = require('./routes');
 
 const app = express();
 
 app.use(middleware);
 
-// Test Route (to be deleted)
-app.get('/', (req, res) => res.send('Hello world!'));
+app.use('/api', routes);
 
 module.exports = app;
