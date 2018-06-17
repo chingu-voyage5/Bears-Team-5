@@ -8,6 +8,6 @@ export const DAILY_GOALS = createRequestTypes('DAILY_GOALS');
 
 export const dailyGoals = {
   request: () => createAction(DAILY_GOALS.REQUEST),
-  success: () => createAction(DAILY_GOALS.SUCCESS),
+  success: data => createAction(DAILY_GOALS.SUCCESS, { data }),
   failure: errors => createAction(DAILY_GOALS.FAILURE, { errors }),
 };
