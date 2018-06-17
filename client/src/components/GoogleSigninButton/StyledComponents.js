@@ -18,7 +18,6 @@ export const GoogleIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
   width: 2.5rem;
   background-color: ${props => props.theme.text.primary};
 `;

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const SpinnerWrapper = styled.div`
   .sk-circle {
-    margin: 100px auto;
-    width: 40px;
-    height: 40px;
+    margin: 2rem auto;
+    width: 2.2rem;
+    height: 2.2rem;
     position: relative;
   }
   .sk-circle .sk-child {
