@@ -4,12 +4,12 @@ import { createRequestTypes, createAction } from '../utils';
 /** *************************************************
  * Login
  */
-export const LOGIN = createRequestTypes('LOGIN');
+export const SIGNIN = createRequestTypes('SIGNIN');
 
-export const login = {
-  request: loginData => createAction(LOGIN.REQUEST, { loginData }),
-  success: () => createAction(LOGIN.SUCCESS),
-  failure: errors => createAction(LOGIN.FAILURE, { errors }),
+export const signin = {
+  request: signinData => createAction(SIGNIN.REQUEST, { signinData }),
+  success: () => createAction(SIGNIN.SUCCESS),
+  failure: errors => createAction(SIGNIN.FAILURE, { errors }),
 };
 
 

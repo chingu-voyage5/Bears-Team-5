@@ -5,24 +5,26 @@ import * as SC from './StyledComponents';
 import GoogleIcon from '../../assets/googleicon.png';
 
 
-const GoogleSignin = props => (
+const GoogleSigninButton = props => (
   <SC.GoogleLoginButton disabled={props.disabled} onClick={props.onClick}>
     <SC.GoogleIcon>
       <SC.GoogleImg src={GoogleIcon} disabled={props.disabled}/>
     </SC.GoogleIcon>
-    Sign in with Google
+    <SC.Message>
+      Sign in with Google
+    </SC.Message>
   </SC.GoogleLoginButton>
 );
 
 
-GoogleSignin.propTypes = {
+GoogleSigninButton.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
-GoogleSignin.defaultProps = {
+GoogleSigninButton.defaultProps = {
   onClick: () => {},
   disabled: false,
 };
 
-export default GoogleSignin;
+export default GoogleSigninButton;
