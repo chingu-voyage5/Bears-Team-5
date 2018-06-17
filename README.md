@@ -54,7 +54,7 @@ A recap of all the api routes
 
 * `POST /api/auth/login`: Login route
 * `POST /api/auth/signin`: Signin route
-* `POST /api/auth/logout`: TODO. Is this necessary? Maybe to close the session on the backend.
+* `POST /api/auth/logout`: Logout route
 * `GET /api/goals/daily`: Gets daily goals
 
 ### Migrations
