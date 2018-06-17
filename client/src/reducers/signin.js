@@ -7,12 +7,12 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case actions.LOGIN.REQUEST:
+    case actions.SIGNIN.REQUEST:
       return { ...state, isFetching: true, errors: {} };
-    case actions.LOGIN.SUCCESS:
+    case actions.SIGNIN.SUCCESS:
       return { ...state, isFetching: false, errors: {} };
 
-    case actions.LOGIN.FAILURE:
+    case actions.SIGNIN.FAILURE:
       return {
         ...state,
         isFetching: false,
