@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import GoogleSignin from '../../components/GoogleSignin';
-import LoginForm from '../../components/LoginForm';
+import GoogleSigninButton from '../../components/GoogleSigninButton';
+import SigninForm from '../../components/SigninForm';
 import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
 import * as actions from '../../actions/auth';
@@ -29,10 +29,10 @@ class Signin extends React.Component {
     return (
       <SC.SigninContainer>
         <SC.ContentContainer>
-          <SC.Title>signin</SC.Title>
-          <GoogleSignin />
+          <SC.Title>sign in</SC.Title>
+          <GoogleSigninButton />
           <SC.FormContainer>
-            <LoginForm login={login} checkFetching={this.checkFetching} />
+            <SigninForm login={login} checkFetching={this.checkFetching} />
           </SC.FormContainer>
           { errors.request && <SC.Error>{ errors.request }</SC.Error>}
           { isFetching && <SC.SpinnerContainer><Spinner /></SC.SpinnerContainer>}

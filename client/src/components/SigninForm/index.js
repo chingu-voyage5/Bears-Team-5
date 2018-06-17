@@ -4,7 +4,7 @@ import { withFormik } from 'formik';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 
-import * as SC from './StyledComponents';
+import * as FE from '../FormElements';
 
 const formikEnhancer = withFormik({
   displayName: 'LoginForm',
@@ -34,9 +34,9 @@ const InnerForm = ({
   handleBlur,
   handleSubmit,
 }) => (
-  <SC.Form onSubmit={handleSubmit}>
-    <SC.FormField>
-      <SC.Input
+  <FE.Form onSubmit={handleSubmit}>
+    <FE.FormField>
+      <FE.Input
         type="email"
         name="email"
         placeholder="Email"
@@ -44,10 +44,10 @@ const InnerForm = ({
         onBlur={handleBlur}
         value={values.email}
       />
-      {touched.email && errors.email && <SC.Error>{errors.email}</SC.Error>}
-    </SC.FormField>
-    <SC.FormField>
-      <SC.Input
+      {touched.email && errors.email && <FE.Error>{errors.email}</FE.Error>}
+    </FE.FormField>
+    <FE.FormField>
+      <FE.Input
         type="password"
         name="password"
         placeholder="Password"
@@ -55,12 +55,14 @@ const InnerForm = ({
         onBlur={handleBlur}
         value={values.password}
       />
-      {touched.password && errors.password && <SC.Error>{errors.password}</SC.Error>}
-    </SC.FormField>
-    <SC.Button type="submit" disabled={values.checkFetching()}>
-      Submit
-    </SC.Button>
-  </SC.Form>
+      {touched.password && errors.password && <FE.Error>{errors.password}</FE.Error>}
+    </FE.FormField>
+    <FE.ButtonsContainer>
+      <FE.Button type="submit" disabled={values.checkFetching()}>
+        SUBMIT
+      </FE.Button>
+    </FE.ButtonsContainer>
+  </FE.Form>
 );
 
 

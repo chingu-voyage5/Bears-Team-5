@@ -20,7 +20,7 @@ const theme = {
   },
   text: {
     primary: '#EEE',
-    secondary: '#DDD',
+    secondary: '#CCC',
   },
   primary: '#21BC6E',
   secondary: '#1E303C',
