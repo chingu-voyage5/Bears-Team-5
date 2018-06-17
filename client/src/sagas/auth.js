@@ -9,22 +9,22 @@ import * as userActions from '../actions/user';
  * Login
  */
 
-const postLoginToAPI = data => axios.post('/api/auth/login', {
+const postSigninToAPI = data => axios.post('/api/auth/login', {
   email: data.email,
   password: data.password,
 });
 
-export function* loginProcess(action) {
+export function* signinProcess(action) {
   try {
     const payload = yield call(
-      postLoginToAPI,
-      action.loginData,
+      postSigninToAPI,
+      action.signinData,
     );
     // User data
     yield put(userActions.userLogin(payload.data));
-    yield put(authActions.login.success());
+    yield put(authActions.signin.success());
   } catch (e) {
-    yield put(authActions.login.failure({
+    yield put(authActions.signin.failure({
       request: e.message,
     }));
   }
@@ -63,8 +63,8 @@ export function* signupProcess(action) {
 export function* watchAuthRequest() {
   yield all([
     takeEvery(
-      authActions.LOGIN.REQUEST,
-      loginProcess,
+      authActions.SIGNIN.REQUEST,
+      signinProcess,
     ),
     takeEvery(
       authActions.SIGNUP.REQUEST,

@@ -97,9 +97,11 @@ const InnerForm = ({
         <FE.Error>{errors.passwordConfirm}</FE.Error>
       }
     </FE.FormField>
-    <FE.Button type="submit" disabled={values.checkFetching()}>
-      Submit
-    </FE.Button>
+    <FE.ButtonsContainer>
+      <FE.Button type="submit" disabled={values.checkFetching()}>
+        SUBMIT
+      </FE.Button>
+    </FE.ButtonsContainer>
   </FE.Form>
 );
 

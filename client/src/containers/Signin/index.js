@@ -20,7 +20,7 @@ class Signin extends React.Component {
 
   render() {
     const {
-      login,
+      signin,
       errors,
       isAuthorized,
       isFetching,
@@ -32,7 +32,7 @@ class Signin extends React.Component {
           <SC.Title>sign in</SC.Title>
           <GoogleSigninButton />
           <SC.FormContainer>
-            <SigninForm login={login} checkFetching={this.checkFetching} />
+            <SigninForm signin={signin} checkFetching={this.checkFetching} />
           </SC.FormContainer>
           { errors.request && <SC.Error>{ errors.request }</SC.Error>}
           { isFetching && <SC.SpinnerContainer><Spinner /></SC.SpinnerContainer>}
@@ -44,29 +44,29 @@ class Signin extends React.Component {
 
 
 Signin.propTypes = {
-  login: PropTypes.func,
+  signin: PropTypes.func,
   isFetching: PropTypes.bool,
   isAuthorized: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
 Signin.defaultProps = {
-  login: () => {},
+  signin: () => {},
   isFetching: false,
   isAuthorized: false,
   errors: {},
 };
 
 
-const mapStateToProps = ({ login, user }) => ({
+const mapStateToProps = ({ signin, user }) => ({
   isAuthorized: user.isAuthorized,
-  isFetching: login.isFetching,
-  errors: login.errors,
+  isFetching: signin.isFetching,
+  errors: signin.errors,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  login: loginData => dispatch(actions.login.request(loginData)),
+  signin: signinData => dispatch(actions.signin.request(signinData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);
