@@ -54,11 +54,11 @@ router.get('/google', passport.authenticate('google', {
  * GET ROUTE
  * READ -- Callback Google authentication
  */
-router.get('/google/callback', passport.authenticate('google', {
-  failureRedirect : '/signup'
-}), (req, res) => {
-  console.log('successfully logged in through google: ', req.user);
-  res.redirect('/user/' + req.user._id);
+router.get('/google/callback', (req, res, next) => {
+  passport.authenticate('google', (err, user) => {
+    if (err) return res.status(500).send(err);
+    if (user) return res.status(200).send(user);
+  })(req, res, next);
 });
 
 module.exports = router;
