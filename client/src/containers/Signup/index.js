@@ -30,12 +30,14 @@ class Signup extends React.Component {
     if (isAuthorized) return <Redirect to="/" />;
     return (
       <SC.SignupContainer>
-        <SC.SignupFormContainer>
-          <SC.Title>signup</SC.Title>
-          <SignupForm signup={signup} checkFetching={this.checkFetching} />
+        <SC.ContentContainer>
+          <SC.Title>sign up</SC.Title>
+          <SC.FormContainer>
+            <SignupForm signup={signup} checkFetching={this.checkFetching} />
+          </SC.FormContainer>
           { errors.request && <SC.Error>{ errors.request }</SC.Error>}
           { isFetching && <SC.SpinnerContainer><Spinner /></SC.SpinnerContainer>}
-        </SC.SignupFormContainer>
+        </SC.ContentContainer>
       </SC.SignupContainer>
     );
   }

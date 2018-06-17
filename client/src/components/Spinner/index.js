@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const SpinnerWrapper = styled.div`
   .sk-circle {
-    margin: 100px auto;
-    width: 40px;
-    height: 40px;
+    margin: 2rem auto;
+    width: 2.2rem;
+    height: 2.2rem;
     position: relative;
   }
   .sk-circle .sk-child {
@@ -21,7 +21,7 @@ const SpinnerWrapper = styled.div`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: #333;
+    background-color: ${props => props.theme.primary};
     border-radius: 100%;
     -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
             animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;

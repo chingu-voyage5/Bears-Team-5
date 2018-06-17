@@ -4,7 +4,7 @@ import { withFormik } from 'formik';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 
-import * as SC from './StyledComponents';
+import * as FE from '../FormElements';
 
 function equalTo(ref, msg) {
   return Yup.mixed().test({
@@ -60,20 +60,20 @@ const InnerForm = ({
   handleBlur,
   handleSubmit,
 }) => (
-  <SC.Form onSubmit={handleSubmit}>
-    <SC.FormField>
-      <SC.Input
-        type="email"
+  <FE.Form onSubmit={handleSubmit}>
+    <FE.FormField>
+      <FE.Input
+        type="text"
         name="email"
         placeholder="Email"
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.email}
       />
-      {touched.email && errors.email && <SC.Error>{errors.email}</SC.Error>}
-    </SC.FormField>
-    <SC.FormField>
-      <SC.Input
+      {touched.email && errors.email && <FE.Error>{errors.email}</FE.Error>}
+    </FE.FormField>
+    <FE.FormField>
+      <FE.Input
         type="password"
         name="password"
         placeholder="Password"
@@ -81,10 +81,10 @@ const InnerForm = ({
         onBlur={handleBlur}
         value={values.password}
       />
-      {touched.password && errors.password && <SC.Error>{errors.password}</SC.Error>}
-    </SC.FormField>
-    <SC.FormField>
-      <SC.Input
+      {touched.password && errors.password && <FE.Error>{errors.password}</FE.Error>}
+    </FE.FormField>
+    <FE.FormField>
+      <FE.Input
         type="password"
         name="passwordConfirm"
         placeholder="Confirm password"
@@ -94,13 +94,15 @@ const InnerForm = ({
       />
       { touched.passwordConfirm &&
         errors.passwordConfirm &&
-        <SC.Error>{errors.passwordConfirm}</SC.Error>
+        <FE.Error>{errors.passwordConfirm}</FE.Error>
       }
-    </SC.FormField>
-    <SC.Button type="submit" disabled={values.checkFetching()}>
-      Submit
-    </SC.Button>
-  </SC.Form>
+    </FE.FormField>
+    <FE.ButtonsContainer>
+      <FE.Button type="submit" disabled={values.checkFetching()}>
+        SUBMIT
+      </FE.Button>
+    </FE.ButtonsContainer>
+  </FE.Form>
 );
 
 

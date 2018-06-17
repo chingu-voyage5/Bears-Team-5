@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import backgroundImg from '../../assets/sea-dark.jpeg';
 
-export const SignupContainer = styled.div`
+export const SigninContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
