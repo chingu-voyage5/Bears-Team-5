@@ -11,6 +11,7 @@ const hashPass = (userPassword) => {
 }
 
 const checkLogin = (req, res, next) => {
+  // FIXME: CHeck & test to make sure req.user is associated correctly
   if (!req.user) return res.status(401).json({ status: 'Must be logged in first.' });
   return next();
 }
