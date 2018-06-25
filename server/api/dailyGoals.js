@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const dailyGoal = await ShortGoal.create({
-      id: req.body.id,
       description: req.body.description,
       longgoal_id: req.body.longgoal_id,
     });

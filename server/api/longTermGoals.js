@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const longGoal = await LongGoal.create({
-      id: req.body.id,
       description: req.body.description,
       user_id: req.body.user_id,
     });
