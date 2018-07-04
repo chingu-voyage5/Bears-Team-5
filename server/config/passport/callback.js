@@ -1,5 +1,5 @@
-const User = require('../../models').user;
-const { comparePass, hashPass } = require('./helper');
+const User = require("../../models").user
+const { comparePass, hashPass } = require("./helper")
 
 /**
  * Callback function for passport local signup
@@ -9,15 +9,15 @@ const { comparePass, hashPass } = require('./helper');
  * @callback done Passport callback: authenticated user
  */
 const localSignupCallback = async (email, password, done) => {
-  email = email.toLowerCase();
+  email = email.toLowerCase()
   try {
-    const user = await User.findOne({ where: { email: email } });
-    if (user) return done(null, false, { message: 'That email has already been taken. Try another' });
+    const user = await User.findOne({ where: { email: email } })
+    if (user) return done(null, false, { message: "That email has already been taken. Try another" })
     else {
-      const newUser = await User.create({ email, password: hashPass(password) });
-      return done(null, newUser);  
+      const newUser = await User.create({ email, password: hashPass(password) })
+      return done(null, newUser)
     }
-  } catch (err) { return done(err); }
+  } catch (err) { return done(err) }
 }
 
 /**
@@ -28,11 +28,12 @@ const localSignupCallback = async (email, password, done) => {
  */
 const localLoginCallback = async (email, password, done) => {
   try {
-    let user = await User.findOne({ where: { email } });
-    if (!user) { return done(null, false, { message: 'Email not found.' }) }
-    if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }); }
-    return done(null, user);
-  } catch (err) { return done(err); }
+    let user = (await User.findOne({ where: { email } }))
+      .toJSON() // Transform response to JSON
+    if (!user) { return done(null, false, { message: "Email not found." }) }
+    if (!comparePass(password, user.password)) { return done(null, false, { message: "Incorrect password." }) }
+    return done(null, user)
+  } catch (err) { return done(err) }
 }
 
 /**
@@ -53,13 +54,13 @@ const authCallback = async (
     const user = (
       await User.findOne({ where: { google_id: id } }) ||
       await User.create({ google_id: id, name: displayName, email: emails[0].value })
-    );
-    return done(null, user);
-  } catch (error) { return done(error, null); }
-};
+    )
+    return done(null, user)
+  } catch (error) { return done(error, null) }
+}
 
 module.exports = {
   localSignupCallback,
   localLoginCallback,
-  authCallback
-};
+  authCallback,
+}
