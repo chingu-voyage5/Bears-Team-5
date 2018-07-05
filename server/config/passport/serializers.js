@@ -1,4 +1,5 @@
 const User = require("../../models").user
+const LongGoal = require("../../models").longgoal
 
 /**
  * Serializes user ID to be stored in coookie
@@ -15,7 +16,11 @@ const serializeUser = (user, done) => {
  * @callback Passport callback: found user
  */
 const deserializeUser = async (userID, done) => {
-  const user = (await User.findById(userID)).toJSON()
+  const user = (await User.findOne({
+    where: { id: userID },
+    include: { model: LongGoal },
+  })).toJSON()
+
   if (user) return done(null, user)
   return done("Authentication failed. User not found", null)
 }

@@ -1,4 +1,5 @@
 const User = require("../../models").user
+const LongGoal = require("../../models").longgoal
 const { comparePass, hashPass } = require("./helper")
 
 /**
@@ -11,7 +12,10 @@ const { comparePass, hashPass } = require("./helper")
 const localSignupCallback = async (email, password, done) => {
   email = email.toLowerCase()
   try {
-    const user = await User.findOne({ where: { email: email } })
+    const user = await User.findOne({
+      where: { email: email },
+      include: { model: LongGoal },
+    })
     if (user) return done(null, false, { message: "That email has already been taken. Try another" })
     else {
       const newUser = await User.create({ email, password: hashPass(password) })
