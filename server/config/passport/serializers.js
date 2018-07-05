@@ -1,5 +1,6 @@
 const User = require("../../models").user
 const LongGoal = require("../../models").longgoal
+const ShortGoal = require("../../models").shortgoal
 
 /**
  * Serializes user ID to be stored in coookie
@@ -18,7 +19,10 @@ const serializeUser = (user, done) => {
 const deserializeUser = async (userID, done) => {
   const user = (await User.findOne({
     where: { id: userID },
-    include: { model: LongGoal },
+    include: {
+      model: LongGoal,
+      include: { model: ShortGoal },
+    },
   })).toJSON()
 
   if (user) return done(null, user)
