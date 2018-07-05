@@ -25,7 +25,7 @@ class Signin extends React.Component {
       isAuthorized,
       isFetching,
     } = this.props;
-    if (isAuthorized) return <Redirect to="/" />;
+    if (isAuthorized) return <Redirect to="/goals" />;
     return (
       <SC.SigninContainer>
         <SC.ContentContainer>

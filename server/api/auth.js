@@ -6,13 +6,8 @@ const { checkLogin } = require("../config/passport/helper")
  * GET USER DATA
  */
 router.get("/user", (req, res) => {
-  if (req.user) {
-    console.log(req.user)
-
-    console.log("Auth", req.isAuthenticated())
-    res.json(req.user)
-  }
-  // Otherwise redirect to login
+  if (req.user) res.status(200).json({ user: req.user })
+  else res.status(200).json({ user: null })
 })
 
 /*

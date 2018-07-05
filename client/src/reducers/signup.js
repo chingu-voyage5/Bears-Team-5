@@ -11,7 +11,6 @@ export default (state = initialState, action = {}) => {
       return { ...state, isFetching: true, errors: {} };
     case actions.SIGNUP.SUCCESS:
       return { ...state, isFetching: false, errors: {} };
-
     case actions.SIGNUP.FAILURE:
       return {
         ...state,
