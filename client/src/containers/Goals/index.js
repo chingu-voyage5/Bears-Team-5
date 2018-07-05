@@ -18,6 +18,7 @@ class Goals extends React.Component {
       <SC.GoalsContainer>
         <SC.Title>goals</SC.Title>
         <SC.GoalsListContainer>
+          <h3>{this.props.user && `Welcome, ${this.props.user.email}`}</h3>
           <p>TODO: INSERT LIST COMPONENT HERE</p>
           {dailyGoals.map((goal, i) => <p key={i}>{goal.name}:{goal.isChecked}</p>)}
         </SC.GoalsListContainer>
@@ -47,7 +48,8 @@ Goals.defaultProps = {
 };
 
 
-const mapStateToProps = ({ goals }) => ({
+const mapStateToProps = ({ goals, user }) => ({
+  user: user.profile,
   dailyGoals: goals.dailyGoals.data,
   isFetching: goals.dailyGoals.isFetching,
   errors: goals.dailyGoals.errors,
@@ -55,7 +57,7 @@ const mapStateToProps = ({ goals }) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  getDailyGoals: () => dispatch(actions.dailyGoals.request()),
+  // getDailyGoals: () => dispatch(actions.dailyGoals.request()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Goals);
