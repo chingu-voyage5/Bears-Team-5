@@ -14,30 +14,28 @@ export default (state = initialState, action = {}) => {
         ...state,
         isFetching: true,
       };
+    case actions.USER_LOGIN:
     case actions.GET_USER.SUCCESS:
-      return {
+      const newState = {
         ...state,
         isFetching: false,
-        isAuthenticated: !!action.user,
-        profile: action.user,
       };
+
+      if (action.user) {
+        const { user: { longgoals, ...profile } } = action;
+        newState.profile = profile;
+        newState.isAuthenticated = !!profile;
+      }
+
+      return newState;
     case actions.GET_USER.FAILURE:
       return {
         ...state,
         isFetching: false,
         errors: action.errors,
       };
-    case actions.USER_LOGIN:
-      return {
-        ...state,
-        isAuthenticated: true,
-        username: action.user.username,
-        email: action.user.email,
-      };
     case actions.USER_LOGOUT:
-      return {
-        ...initialState,
-      };
+      return initialState;
     default: return state;
   }
 };
