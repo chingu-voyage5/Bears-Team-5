@@ -1,28 +1,33 @@
-'use strict'
+"use strict"
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+  const User = sequelize.define("user", {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
-      required: true
+      required: true,
     },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     google_id: DataTypes.STRING,
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
-    updated_at:  DataTypes.DATE,
-    deleted_at: DataTypes.DATE
+    updated_at: DataTypes.DATE,
+    deleted_at: DataTypes.DATE,
   }, {
-    underscored: true
-  });
-  return User;
-};
+    underscored: true,
+  })
+
+  User.associate = models => {
+    User.hasMany(models.longgoal)
+  }
+
+  return User
+}
