@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
-import * as actions from '../../actions/goals';
+// import * as actions from '../../actions/goals';
 
 class Goals extends React.Component {
   componentDidMount() {

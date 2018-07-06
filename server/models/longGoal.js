@@ -27,8 +27,6 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   LongGoal.associate = models => {
-    console.log(models)
-
     LongGoal.hasMany(models.shortgoal, {
       foreignKey: "longgoal_id",
       sourceKey: "id",

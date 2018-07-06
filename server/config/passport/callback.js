@@ -15,10 +15,6 @@ const localSignupCallback = async (email, password, done) => {
   try {
     const user = await User.findOne({
       where: { email: email },
-      include: {
-        model: LongGoal,
-        include: { model: ShortGoal },
-      },
     })
     if (user) return done(null, false, { message: "That email has already been taken. Try another" })
     else {
@@ -36,8 +32,13 @@ const localSignupCallback = async (email, password, done) => {
  */
 const localLoginCallback = async (email, password, done) => {
   try {
-    let user = (await User.findOne({ where: { email } }))
-      .toJSON() // Transform response to JSON
+    let user = (await User.findOne({
+      where: { email },
+      include: {
+        model: LongGoal,
+        include: { model: ShortGoal },
+      },
+    })).toJSON() // Transform response to JSON
     if (!user) { return done(null, false, { message: "Email not found." }) }
     if (!comparePass(password, user.password)) { return done(null, false, { message: "Incorrect password." }) }
     return done(null, user)
