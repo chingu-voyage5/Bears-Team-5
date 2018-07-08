@@ -15,8 +15,6 @@ import Goals from './containers/Goals';
 
 class App extends React.Component {
   async componentDidMount() {
-    // fetch user data on every app reload
-    // TODO include user's goals
     this.props.getUser();
   }
 
@@ -48,14 +46,16 @@ App.propTypes = {
 
 App.defaultProps = {
   getUser: () => {},
-  user: null,
   isFetching: false,
+  isAuthenticated: false,
+  user: {},
   errors: {},
 };
 
 const mapStateToProps = ({ user }) => ({
   user: user.profile,
   isFetching: user.isFetching,
+  isAuthenticated: user.isAuthenticated,
   errors: user.errors,
 });
 
