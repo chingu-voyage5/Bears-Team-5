@@ -1,10 +1,12 @@
 const router = require('express').Router();
 
 const auth = require('./auth');
-const goals = require('./goals');
+const dailyGoals = require('./dailyGoals');
+const longTermGoals = require('./longTermGoals');
 
 // Router Paths
 router.use('/auth', auth);
-router.use('/goals', goals);
+router.use('/goals/daily', dailyGoals);
+router.use('/goals/longterm', longTermGoals);
 
 module.exports = router;
