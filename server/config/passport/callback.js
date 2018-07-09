@@ -1,7 +1,9 @@
-const User = require("../../models").user
-const LongGoal = require("../../models").longgoal
-const ShortGoal = require("../../models").shortgoal
-const { comparePass, hashPass } = require("./helper")
+/* eslint-disable no-param-reassign */
+
+const User = require('../../models').user;
+const LongGoal = require('../../models').longgoal;
+const ShortGoal = require('../../models').shortgoal;
+const { comparePass, hashPass } = require('./helper');
 
 /**
  * Callback function for passport local signup
@@ -11,18 +13,17 @@ const { comparePass, hashPass } = require("./helper")
  * @callback done Passport callback: authenticated user
  */
 const localSignupCallback = async (email, password, done) => {
-  email = email.toLowerCase()
+  email = email.toLowerCase();
   try {
     const user = await User.findOne({
-      where: { email: email },
-    })
-    if (user) return done(null, false, { message: "That email has already been taken. Try another" })
-    else {
-      const newUser = await User.create({ email, password: hashPass(password) })
-      return done(null, newUser)
-    }
-  } catch (err) { return done(err) }
-}
+      where: { email },
+    });
+    if (user) return done(null, false, { message: 'That email has already been taken. Try another' });
+
+    const newUser = await User.create({ email, password: hashPass(password) });
+    return done(null, newUser);
+  } catch (err) { return done(err); }
+};
 
 /**
  * Callback function for passport local login
@@ -32,18 +33,18 @@ const localSignupCallback = async (email, password, done) => {
  */
 const localLoginCallback = async (email, password, done) => {
   try {
-    let user = (await User.findOne({
+    const user = (await User.findOne({
       where: { email },
       include: {
         model: LongGoal,
         include: { model: ShortGoal },
       },
-    })).toJSON() // Transform response to JSON
-    if (!user) { return done(null, false, { message: "Email not found." }) }
-    if (!comparePass(password, user.password)) { return done(null, false, { message: "Incorrect password." }) }
-    return done(null, user)
-  } catch (err) { return done(err) }
-}
+    })).toJSON(); // Transform response to JSON
+    if (!user) { return done(null, false, { message: 'Email not found.' }); }
+    if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }); }
+    return done(null, user);
+  } catch (err) { return done(err); }
+};
 
 /**
  * Callback function for Google oauth passport
@@ -61,15 +62,15 @@ const authCallback = async (
 ) => {
   try {
     const user = (
-      await User.findOne({ where: { google_id: id } }) ||
-      await User.create({ google_id: id, name: displayName, email: emails[0].value })
-    )
-    return done(null, user)
-  } catch (error) { return done(error, null) }
-}
+      await User.findOne({ where: { google_id: id } })
+      || await User.create({ google_id: id, name: displayName, email: emails[0].value })
+    );
+    return done(null, user);
+  } catch (error) { return done(error, null); }
+};
 
 module.exports = {
   localSignupCallback,
   localLoginCallback,
   authCallback,
-}
+};

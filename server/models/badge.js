@@ -1,4 +1,4 @@
-'use strict';
+
 
 module.exports = (sequelize, DataTypes) => {
   const Badge = sequelize.define('badge', {
@@ -6,28 +6,28 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
-      required: true
+      required: true,
     },
     image: {
       type: DataTypes.STRING,
-      required: true
+      required: true,
     },
     user_id: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: false,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
-    updated_at:  DataTypes.DATE,
-    deleted_at: DataTypes.DATE
+    updated_at: DataTypes.DATE,
+    deleted_at: DataTypes.DATE,
   }, {
-    underscored: true
+    underscored: true,
   });
   return Badge;
 };

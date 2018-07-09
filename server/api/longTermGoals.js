@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const LongGoal = require('../models/').longgoal
+const LongGoal = require('../models/').longgoal;
 
 /**
- * GET ROUTE 
+ * GET ROUTE
  * READ -- Fetch long-term goals
  */
 router.get('/', async (req, res) => {
@@ -37,11 +37,11 @@ router.post('/', async (req, res) => {
  */
 router.put('/', async (req, res) => {
   try {
-    const longGoal = await LongGoal.findOne({ where: { id: req.body.id }});
+    const longGoal = await LongGoal.findOne({ where: { id: req.body.id } });
     if (longGoal) {
       const updateLongGoal = await LongGoal.update({
         description: req.body.description,
-      }, { where: { id: req.body.id }});
+      }, { where: { id: req.body.id } });
       if (updateLongGoal) {
         res.status(200).send(updateLongGoal);
       } else {
@@ -61,13 +61,12 @@ router.put('/', async (req, res) => {
  */
 router.delete('/', async (req, res) => {
   try {
-    const longGoal = await LongGoal.findOne({ where: { id: req.body.id }});
+    const longGoal = await LongGoal.findOne({ where: { id: req.body.id } });
     if (longGoal) {
       longGoal.destroy({ force: true });
       return res.status(200).send({ message: 'Successfully deleted goal' });
-    } else {
-      return res.status(404).send({ message: 'Goal not found' });
     }
+    return res.status(404).send({ message: 'Goal not found' });
   } catch (err) {
     return res.status(500).send(err);
   }

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const ShortGoal = sequelize.define("shortgoal", {
+  const ShortGoal = sequelize.define('shortgoal', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -24,14 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     deleted_at: DataTypes.DATE,
   }, {
     underscored: true,
-  })
+  });
 
-  ShortGoal.associate = models => {
+  ShortGoal.associate = (models) => {
     ShortGoal.belongsTo(models.longgoal, {
-      foreignKey: "longgoal_id",
-      targetKey: "id",
-    })
-  }
+      foreignKey: 'longgoal_id',
+      targetKey: 'id',
+    });
+  };
 
-  return ShortGoal
-}
+  return ShortGoal;
+};

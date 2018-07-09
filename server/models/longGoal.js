@@ -1,7 +1,7 @@
-"use strict"
+
 
 module.exports = (sequelize, DataTypes) => {
-  const LongGoal = sequelize.define("longgoal", {
+  const LongGoal = sequelize.define('longgoal', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -24,14 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     deleted_at: DataTypes.DATE,
   }, {
     underscored: true,
-  })
+  });
 
-  LongGoal.associate = models => {
+  LongGoal.associate = (models) => {
     LongGoal.hasMany(models.shortgoal, {
-      foreignKey: "longgoal_id",
-      sourceKey: "id",
-    })
-  }
+      foreignKey: 'longgoal_id',
+      sourceKey: 'id',
+    });
+  };
 
-  return LongGoal
-}
+  return LongGoal;
+};

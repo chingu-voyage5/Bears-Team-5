@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const ShortGoal = require('../models/').shortgoal
+const ShortGoal = require('../models/').shortgoal;
 
 /**
- * GET ROUTE 
+ * GET ROUTE
  * READ -- Fetch daily goals
  */
 router.get('/', async (req, res) => {
@@ -37,17 +37,16 @@ router.post('/', async (req, res) => {
  */
 router.put('/', async (req, res) => {
   try {
-    const dailyGoal = await ShortGoal.findOne({ where: { id: req.body.id }});
+    const dailyGoal = await ShortGoal.findOne({ where: { id: req.body.id } });
     if (dailyGoal) {
       const updateDailyGoal = await ShortGoal.update({
         description: req.body.description,
         longgoal_id: req.body.longgoal_id,
-      }, { where: { id: req.body.id }});
+      }, { where: { id: req.body.id } });
       if (updateDailyGoal) {
         return res.status(200).send(updateDailyGoal);
-      } else {
-        res.status(500).send({ message: 'Parameters missing' });
       }
+      res.status(500).send({ message: 'Parameters missing' });
     } else {
       res.status(404).send({ message: 'Goal not found' });
     }
@@ -62,13 +61,12 @@ router.put('/', async (req, res) => {
  */
 router.delete('/', async (req, res) => {
   try {
-    const dailyGoal = await ShortGoal.findOne({ where: { id: req.body.id }});
+    const dailyGoal = await ShortGoal.findOne({ where: { id: req.body.id } });
     if (dailyGoal) {
       dailyGoal.destroy({ force: true });
       return res.status(200).send({ message: 'Successfully deleted goal' });
-    } else {
-      return res.status(404).send({ message: 'Goal not found' });
     }
+    return res.status(404).send({ message: 'Goal not found' });
   } catch (err) {
     return res.status(500).send(err);
   }

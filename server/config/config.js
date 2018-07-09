@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const { NODE_ENV } = process.env;
 
 const configs = {
@@ -18,7 +19,7 @@ const configs = {
     database: process.env.TEST_DB_NAME,
     host: process.env.TEST_DB_URL,
     port: process.env.TEST_DB_PORT,
-    dialect: 'postgres'
+    dialect: 'postgres',
   },
   production: {
     username: process.env.PROD_DB_USERNAME,
@@ -26,18 +27,18 @@ const configs = {
     database: process.env.PROD_DB_NAME,
     host: process.env.PROD_DB_URL,
     port: process.env.PROD_DB_PORT,
-    dialect: 'postgres'
-  }
-}
+    dialect: 'postgres',
+  },
+};
 
 if (
-  NODE_ENV !== 'production' &&
-  NODE_ENV !== 'test' &&
-  NODE_ENV !== 'development'
+  NODE_ENV !== 'production'
+  && NODE_ENV !== 'test'
+  && NODE_ENV !== 'development'
 ) {
-  throw Error('Bad NODE_ENV. Only accepted are: production, test and development. Got '+ NODE_ENV);
+  throw Error(`Bad NODE_ENV. Only accepted are: production, test and development. Got ${NODE_ENV}`);
 }
-console.log('Running in NODE_ENV: ' + NODE_ENV);
+console.log(`Running in NODE_ENV: ${NODE_ENV}`);
 module.exports = {
   ...configs,
   default: configs[NODE_ENV],

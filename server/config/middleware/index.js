@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser'); // use parsed form data in request body
 const morgan = require('morgan'); // log requests to console
-const helmet = require('helmet'); //sets HTTP headers to secure express routes
+const helmet = require('helmet'); // sets HTTP headers to secure express routes
 const cookieParser = require('cookie-parser'); // parse HTTP cookie requests
 const passport = require('../passport');
 

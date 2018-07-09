@@ -2,8 +2,8 @@ const Sequelize = require('sequelize');
 const config = require('../config/config').default;
 
 // Connect all the models/tables in the database to a db object,
-//so everything is accessible via one 
-console.log("Connecting to DB", config.host, config.port, config.database);
+// so everything is accessible via one
+console.log('Connecting to DB', config.host, config.port, config.database);
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   port: config.port,
   host: config.host,
@@ -13,15 +13,15 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
+    idle: 10000,
   },
   define: {
-    underscored: true
-  }
+    underscored: true,
+  },
 });
 
 // Connect all the models/tables in the database to a db object,
-//so everything is accessible via one object
+// so everything is accessible via one object
 const db = {};
 
 db.Sequelize = Sequelize;
@@ -35,13 +35,13 @@ db.badges = require('../models/badge.js')(sequelize, Sequelize);
 
 // Relations
 db.users.hasMany(db.longgoals, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
 });
 db.longgoals.hasMany(db.shortgoals, {
-  foreignKey: 'longgoal_id'
+  foreignKey: 'longgoal_id',
 });
 db.users.hasMany(db.badges, {
-    foreignKey: 'user_id'
-  });
+  foreignKey: 'user_id',
+});
 
 module.exports = db;

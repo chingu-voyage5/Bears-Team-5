@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import * as actions from '../actions/user';
 
 const initialState = {

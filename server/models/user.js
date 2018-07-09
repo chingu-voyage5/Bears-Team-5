@@ -1,7 +1,7 @@
-"use strict"
+
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("user", {
+  const User = sequelize.define('user', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     deleted_at: DataTypes.DATE,
   }, {
     underscored: true,
-  })
+  });
 
-  User.associate = models => {
-    User.hasMany(models.longgoal)
-  }
+  User.associate = (models) => {
+    User.hasMany(models.longgoal);
+  };
 
-  return User
-}
+  return User;
+};
