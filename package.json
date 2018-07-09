@@ -11,7 +11,8 @@
     "cypress": "cypress open",
     "cypress:all": "cypress run",
     "server": "cd server && npm start",
-    "dev-server": "cd server && npm run dev"
+    "dev-server": "cd server && npm run dev",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run start\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/chingu-voyage5/Bears-Team-5#readme",
   "devDependencies": {
+    "concurrently": "^3.6.0",
     "cypress": "^2.1.0",
     "eslint": "^5.1.0",
     "eslint-config-airbnb-base": "^13.0.0",
