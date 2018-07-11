@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import axios from 'axios'; // TEMP
@@ -13,7 +13,7 @@ import Signup from './containers/Signup';
 import Landing from './containers/Landing';
 import Goals from './containers/Goals';
 
-class App extends React.Component {
+/* class App extends React.Component {
   async componentDidMount() {
     this.props.getUser();
   }
@@ -65,3 +65,33 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+ */
+
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getUser();
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <Switch>
+          <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/goals" component={Goals} />
+          <Route path="/" exact component={Goals} />
+          <Route
+            path="/*"
+            render={() => <Redirect to="/" />}
+          />
+        </Switch>
+      </React.Fragment>
+    );
+  }
+}
+
+const mapDispatch = dispatch => ({
+  getUser: () => dispatch(actions.getUser.request()),
+});
+
+export default withRouter(connect(null, mapDispatch)(App));
