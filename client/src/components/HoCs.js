@@ -7,3 +7,9 @@ export const requireAuth = Component =>
     (!props.user.isAuthenticated && !props.user.isFetching
       ? <Redirect to="/signin"/>
       : <Component { ...props}/>));
+
+export const authRedirect = Component =>
+  connect(({ user }) => ({ user }))(props =>
+    (props.user.isAuthenticated
+      ? <Redirect to="/goals"/>
+      : <Component {...props}/>));

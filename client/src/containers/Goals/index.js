@@ -8,16 +8,13 @@ import { requireAuth } from '../../components/HoCs';
 
 const Goals = (props) => {
   const {
-    goals,
-    user, user: {
-      isFetching, isAuthenticated, errors, profile,
-    },
+    goals, user, user: { isFetching, errors },
   } = props;
   return (
     <SC.GoalsContainer>
       <SC.Title>goals</SC.Title>
       <SC.GoalsListContainer>
-        <h3>{profile && `Welcome, ${profile.email}`}</h3>
+        <h3>{user && `Welcome, ${user.profile.email}`}</h3>
         <p>TODO: INSERT LIST COMPONENT HERE</p>
         <ul>{goals.map((goal, i) =>
           <li key={`L${i}`}>

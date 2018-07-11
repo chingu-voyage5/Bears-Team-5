@@ -79,7 +79,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/logout" component={Logout} />
           <Route path="/goals" component={Goals} />
-          <Route path="/" exact component={Goals} />
+          <Route path="/" exact component={Landing} />
           <Route
             path="/*"
             render={() => <Redirect to="/" />}

@@ -7,6 +7,7 @@ import SigninForm from '../../components/SigninForm';
 import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
 import * as actions from '../../actions/auth';
+import { authRedirect } from '../../components/HoCs';
 
 class Signin extends React.Component {
   constructor() {
@@ -21,13 +22,8 @@ class Signin extends React.Component {
   render() {
     const {
       signin,
-      user,
-      errors,
-      isAuthenticated,
-      isFetching,
+      user: { errors, isFetching },
     } = this.props;
-    if (isAuthenticated) return <Redirect to="/goals" />;
-    console.log({ props: this.props });
 
     return (
       <SC.SigninContainer>
@@ -46,6 +42,7 @@ class Signin extends React.Component {
 }
 
 Signin.propTypes = {
+  signin: PropTypes.func,
   isFetching: PropTypes.bool,
   isAuthenticated: PropTypes.bool,
   errors: PropTypes.shape({}),
@@ -58,16 +55,8 @@ Signin.propTypes = {
 //   errors: {},
 // };
 
-const mapStateToProps = ({ user }) => ({
-  isAuthenticated: user.isAuthenticated,
-  isFetching: user.isFetching,
-  errors: user.errors,
-  user: user.profile,
-});
-
-
 const mapDispatchToProps = dispatch => ({
   signin: signinData => dispatch(actions.signin.request(signinData)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default connect(null, mapDispatchToProps)(authRedirect(Signin));

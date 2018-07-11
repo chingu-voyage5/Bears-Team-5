@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import SignupForm from '../../components/SignupForm';
 import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
-
 import * as actions from '../../actions/auth';
+import { authRedirect } from '../../components/HoCs';
 
 
 class Signup extends React.Component {
@@ -23,11 +23,8 @@ class Signup extends React.Component {
   render() {
     const {
       signup,
-      errors,
-      isAuthenticated,
-      isFetching,
+      user: { errors, isFetching },
     } = this.props;
-    if (isAuthenticated) return <Redirect to="/goals/new" />;
     return (
       <SC.SignupContainer>
         <SC.ContentContainer>
@@ -58,15 +55,8 @@ Signup.propTypes = {
 //   errors: {},
 // };
 
-const mapStateToProps = ({ user }) => ({
-  isAuthenticated: user.isAuthenticated,
-  isFetching: user.isFetching,
-  errors: user.errors,
-});
-
-
 const mapDispatchToProps = dispatch => ({
   signup: signupData => dispatch(actions.signup.request(signupData)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(authRedirect(Signup));
