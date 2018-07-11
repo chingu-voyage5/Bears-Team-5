@@ -21,8 +21,8 @@ export function* signinProcess(action) {
       action.signinData,
     );
     // User data
-    yield put(userActions.userLogin(payload.data));
-    yield put(authActions.signin.success());
+    // yield put(userActions.userLogin(payload.data));
+    yield put(authActions.signin.success(payload.data));
   } catch (e) {
     yield put(authActions.signin.failure({
       request: e.message,
@@ -46,8 +46,8 @@ export function* signupProcess(action) {
       action.signupData,
     );
     // User data
-    yield put(userActions.userLogin(payload.data));
-    yield put(authActions.signup.success());
+    // yield put(userActions.userLogin(payload.data));
+    yield put(authActions.signup.success(payload.data));
   } catch (e) {
     yield put(authActions.signup.failure({
       request: e.message,
