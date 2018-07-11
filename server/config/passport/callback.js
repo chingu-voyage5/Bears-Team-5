@@ -21,7 +21,7 @@ const localSignupCallback = async (email, password, done) => {
     if (user) return done(null, false, { message: 'That email has already been taken. Try another' });
 
     const newUser = await User.create({ email, password: hashPass(password) });
-    return done(null, newUser);
+    return done(null, newUser.toJSON());
   } catch (err) { return done(err); }
 };
 
@@ -39,10 +39,10 @@ const localLoginCallback = async (email, password, done) => {
         model: LongGoal,
         include: { model: ShortGoal },
       },
-    })).toJSON(); // Transform response to JSON
+    }));
     if (!user) { return done(null, false, { message: 'Email not found.' }); }
     if (!comparePass(password, user.password)) { return done(null, false, { message: 'Incorrect password.' }); }
-    return done(null, user);
+    return done(null, user.toJSON());
   } catch (err) { return done(err); }
 };
 
@@ -70,10 +70,10 @@ const authCallback = async (
             include: { model: ShortGoal },
           },
         },
-      }).toJSON()
+      })
       || await User.create({ google_id: id, name: displayName, email: emails[0].value })
     );
-    return done(null, user);
+    return done(null, user.toJSON());
   } catch (error) { return done(error, null); }
 };
 

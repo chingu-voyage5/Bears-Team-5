@@ -3,7 +3,7 @@ const passport = require('passport');
 const { checkLogin } = require('../config/passport/helper');
 
 /**
- * GET USER DATA
+ * GET AUTHENTICATED USER DATA
  */
 router.get('/user', (req, res) => {
   if (req.user) res.status(200).json({ user: req.user });
