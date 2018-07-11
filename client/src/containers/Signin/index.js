@@ -21,11 +21,14 @@ class Signin extends React.Component {
   render() {
     const {
       signin,
+      user,
       errors,
-      isAuthorized,
+      isAuthenticated,
       isFetching,
     } = this.props;
-    if (isAuthorized) return <Redirect to="/goals" />;
+    if (isAuthenticated) return <Redirect to="/goals" />;
+    console.log({ props: this.props });
+
     return (
       <SC.SigninContainer>
         <SC.ContentContainer>
@@ -42,26 +45,24 @@ class Signin extends React.Component {
   }
 }
 
-
 Signin.propTypes = {
-  signin: PropTypes.func,
   isFetching: PropTypes.bool,
-  isAuthorized: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
-Signin.defaultProps = {
-  signin: () => {},
-  isFetching: false,
-  isAuthorized: false,
-  errors: {},
-};
+// Signin.defaultProps = {
+//   signin: () => {},
+//   isFetching: 'TZFZTFIZTFI',
+//   isAuthenticated: 'LJHBOBOUIBOUI',
+//   errors: {},
+// };
 
-
-const mapStateToProps = ({ signin, user }) => ({
-  isAuthorized: user.isAuthorized,
-  isFetching: signin.isFetching,
-  errors: signin.errors,
+const mapStateToProps = ({ user }) => ({
+  isAuthenticated: user.isAuthenticated,
+  isFetching: user.isFetching,
+  errors: user.errors,
+  user: user.profile,
 });
 
 

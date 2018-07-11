@@ -42,35 +42,18 @@ export default (state = initialState, action = {}) => {
 };
  */
 
-import { GET_USER, USER_LOGIN, USER_LOGOUT } from '../actions/user';
+import { GET_USER, USER_LOGOUT } from '../actions/user';
+import { SIGNIN, SIGNUP } from '../actions/auth';
 
-const InitialState = {
-  isFetching: false,
-  data: [],
-  errors: {},
-};
-
-export default (state = InitialState, action = {}) => {
+export default(state = [], action) => {
   switch (action.type) {
-    case GET_USER.REQUEST:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case USER_LOGIN:
     case GET_USER.SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        data: action.user ? action.user.longgoals : [],
-      };
-    case GET_USER.FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-      };
+    case SIGNIN.SUCCESS:
+    case SIGNUP.SUCCESS:
+      return action.user ? action.user.longgoals : [];
     case USER_LOGOUT:
-      return InitialState;
+      return [];
     default: return state;
   }
 };
+

@@ -24,10 +24,10 @@ class Signup extends React.Component {
     const {
       signup,
       errors,
-      isAuthorized,
+      isAuthenticated,
       isFetching,
     } = this.props;
-    if (isAuthorized) return <Redirect to="/" />;
+    if (isAuthenticated) return <Redirect to="/goals/new" />;
     return (
       <SC.SignupContainer>
         <SC.ContentContainer>
@@ -47,22 +47,21 @@ class Signup extends React.Component {
 Signup.propTypes = {
   signup: PropTypes.func,
   isFetching: PropTypes.bool,
-  isAuthorized: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
   errors: PropTypes.shape({}),
 };
 
-Signup.defaultProps = {
-  signup: () => {},
-  isFetching: false,
-  isAuthorized: false,
-  errors: {},
-};
+// Signup.defaultProps = {
+//   signup: () => {},
+//   isFetching: false,
+//   isAuthenticated: false,
+//   errors: {},
+// };
 
-
-const mapStateToProps = ({ signup, user }) => ({
-  isAuthorized: user.isAuthorized,
-  isFetching: signup.isFetching,
-  errors: signup.errors,
+const mapStateToProps = ({ user }) => ({
+  isAuthenticated: user.isAuthenticated,
+  isFetching: user.isFetching,
+  errors: user.errors,
 });
 
 

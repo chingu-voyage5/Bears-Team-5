@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../../components/Spinner';
 import * as SC from './StyledComponents';
+import { requireAuth } from '../../components/HoCs';
 
 const Goals = (props) => {
   const {
-    isFetching, errors, goals, user,
+    goals,
+    user, user: {
+      isFetching, isAuthenticated, errors, profile,
+    },
   } = props;
-  console.log('GOALS', goals);
-
   return (
     <SC.GoalsContainer>
       <SC.Title>goals</SC.Title>
       <SC.GoalsListContainer>
-        <h3>{user && `Welcome, ${user.email}`}</h3>
+        <h3>{profile && `Welcome, ${profile.email}`}</h3>
         <p>TODO: INSERT LIST COMPONENT HERE</p>
         <ul>{goals.map((goal, i) =>
           <li key={`L${i}`}>
@@ -35,7 +37,9 @@ const Goals = (props) => {
 };
 
 Goals.propTypes = {
-  user: PropTypes.shape({}),
+  user: PropTypes.shape({
+    email: PropTypes.string,
+  }),
   goals: PropTypes.arrayOf(PropTypes.shape({
     user_id: PropTypes.string,
     description: PropTypes.string,
@@ -48,19 +52,11 @@ Goals.propTypes = {
   errors: PropTypes.shape({}),
 };
 
-Goals.defaultProps = {
-  user: {},
-  goals: [],
-  isFetching: false,
-  errors: {},
-};
+// Goals.defaultProps = {
+//   user: {},
+//   goals: [],
+//   isFetching: false,
+//   errors: {},
+// };
 
-
-const mapStateToProps = ({ goals, user }) => ({
-  goals: goals.data,
-  user: user.profile,
-  isFetching: goals.isFetching,
-  errors: goals.errors,
-});
-
-export default connect(mapStateToProps)(Goals);
+export default connect(({ goals }) => ({ goals }))(requireAuth(Goals));
