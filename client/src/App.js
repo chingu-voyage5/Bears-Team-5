@@ -12,6 +12,7 @@ import Signin from './containers/Signin';
 import Signup from './containers/Signup';
 import Landing from './containers/Landing';
 import Goals from './containers/Goals';
+import GoalsNew from './containers/GoalNew';
 
 /* class App extends React.Component {
   async componentDidMount() {
@@ -78,7 +79,8 @@ class App extends React.Component {
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
           <Route path="/logout" component={Logout} />
-          <Route path="/goals" component={Goals} />
+          <Route path="/goals" exact component={Goals} />
+          <Route path="/goals/new" component={GoalsNew} />
           <Route path="/" exact component={Landing} />
           <Route
             path="/*"
