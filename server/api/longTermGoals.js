@@ -20,15 +20,17 @@ router.get('/', async (req, res) => {
  * CREATE -- Make a new long-term goal
  */
 router.post('/', async (req, res) => {
+  let longGoal;
   try {
-    const longGoal = await LongGoal.create({
+    const newGoal = {
       description: req.body.description,
-      user_id: req.body.user_id,
-    });
-    res.status(201).send(longGoal);
+      user_id: req.user.id,
+    };
+    longGoal = await LongGoal.create(newGoal);
   } catch (err) {
     return res.status(500).send(err);
   }
+  return res.status(201).send(longGoal.toJSON());
 });
 
 /**
