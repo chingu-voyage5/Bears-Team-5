@@ -62,7 +62,15 @@ const authCallback = async (
 ) => {
   try {
     const user = (
-      await User.findOne({ where: { google_id: id } })
+      await User.findOne({
+        where: {
+          google_id: id,
+          include: {
+            model: LongGoal,
+            include: { model: ShortGoal },
+          },
+        },
+      }).toJSON()
       || await User.create({ google_id: id, name: displayName, email: emails[0].value })
     );
     return done(null, user);
